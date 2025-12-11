@@ -39,4 +39,13 @@ Ustvari PR
 -> Za merge v dev ni potreben approval.
 -> Za merge v main je obvezen 1 approval.
 
+## Posodobi lokalni repozitorij na zadnjo verzijo
+
+Če že imaš repozitorij na računalniku, ga lahko posodobiš na zadnje stanje z GitHub-a:
+
+```bash
+git checkout dev     # preklopi na glavno razvojno vejo
+git pull             # potegni zadnje spremembe iz GitHub-a
+```
+
 Hvala lepa in želim uspešno programiranje!
