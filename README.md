@@ -35,11 +35,14 @@ docker compose up # opcijsko -d (v ozadju)
 # na nekaterih sistemih docker-compose
 ```
 
+Backend ima podporo za avtomatski reload z:
+```bash
+docker compose watch
+```
+
 ### 4.2 Swagger dokumentacija za backend
 ```bash
-# zaženite backend lokalno (python main.py ali docker compose up)
-# nato odprite
-http://localhost:5000/apidocs
+http://localhost:5000/apidocs/
 ```
 
 ## 5. odpri PR (Pull request)

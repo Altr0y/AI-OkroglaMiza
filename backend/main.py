@@ -22,13 +22,28 @@ SWAGGER_TEMPLATE = {
     "basePath": "/api",
 }
 
+SWAGGER_CONFIG = {
+    "headers": [],
+    "specs": [
+        {
+            "endpoint": "apispec_1",
+            "route": "/apispec_1.json",
+            "rule_filter": lambda rule: True,
+            "model_filter": lambda tag: True,
+        },
+    ],
+    "static_url_path": "/flasgger_static",
+    "swagger_ui": True,
+    "specs_route": "/apidocs/",
+}
+
 
 def create_app() -> Flask:
-    """Tovarniška funkcija aplikacije za lokalni zagon in gunicorn."""
+    """Lokalni zagon in gunicorn."""
     app = Flask(__name__)
     for blueprint in BLUEPRINTS:
         app.register_blueprint(blueprint, url_prefix="/api")
-    Swagger(app, template=SWAGGER_TEMPLATE)
+    Swagger(app, template=SWAGGER_TEMPLATE, config=SWAGGER_CONFIG)
     return app
 
 
