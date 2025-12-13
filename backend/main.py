@@ -16,7 +16,7 @@ BLUEPRINTS = (
 SWAGGER_TEMPLATE = {
     "info": {
         "title": "AI Okrogla Miza API",
-        "description": "Samodejno generirana dokumentacija za vzorčno aplikacijo.",
+        "description": "Samodejno generirana dokumentacija za backend.",
         "version": "1.0.0",
     },
     "basePath": "/api",

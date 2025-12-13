@@ -1,4 +1,3 @@
-"""Zdravstveni endpointi za vzorčno aplikacijo Flask."""
 
 from flask import Blueprint, jsonify
 

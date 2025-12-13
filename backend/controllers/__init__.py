@@ -1,4 +1,4 @@
-"""Paket controllerjev, ki izpostavi vse blueprinte."""
+"""Tukaj je treba dodat vse kontrolerje da so vidni v main"""
 
 from .health import health_bp
 
