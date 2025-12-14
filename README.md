@@ -27,6 +27,24 @@ git commit -m "Opis spremembe"
 git push
 ```
 
+### 4.1 Zagon celega projekta
+
+Iz roota projekta:
+```bash
+docker compose up # opcijsko -d (v ozadju)
+# na nekaterih sistemih docker-compose
+```
+
+Backend ima podporo za avtomatski reload z:
+```bash
+docker compose watch
+```
+
+### 4.2 Swagger dokumentacija za backend
+```bash
+http://localhost:5000/apidocs/
+```
+
 ## 5. odpri PR (Pull request)
 ```bash
 Na GitHubu izberi:
