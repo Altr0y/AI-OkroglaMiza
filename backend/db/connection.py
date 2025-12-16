@@ -6,6 +6,9 @@ from .config import get_db_config
 
 def get_connection():
     config = get_db_config()
+    if "jdbc_url" in config:
+        return psycopg2.connect(config["jdbc_url"])
+    
     return psycopg2.connect(
         host=config["host"],
         port=config["port"],
