@@ -1,4 +1,4 @@
-"""Tukaj je treba dodat vse kontrolerje da so vidni v main"""
+"""Here you need to add all controllers so they are visible in main"""
 
 from .health import health_bp
 

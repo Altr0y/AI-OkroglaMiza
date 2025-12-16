@@ -1,4 +1,4 @@
-"""Vstopna točka za vzorčno Flask aplikacijo."""
+"""Entry point for the Flask application."""
 
 from __future__ import annotations
 
@@ -16,7 +16,7 @@ BLUEPRINTS = (
 SWAGGER_TEMPLATE = {
     "info": {
         "title": "AI Okrogla Miza API",
-        "description": "Samodejno generirana dokumentacija za backend.",
+        "description": "Automatically generated documentation for the backend.",
         "version": "1.0.0",
     },
     "basePath": "/api",
@@ -39,7 +39,7 @@ SWAGGER_CONFIG = {
 
 
 def create_app() -> Flask:
-    """Lokalni zagon in gunicorn."""
+    """Local run and gunicorn."""
     app = Flask(__name__)
     for blueprint in BLUEPRINTS:
         app.register_blueprint(blueprint, url_prefix="/api")

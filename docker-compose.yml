@@ -8,6 +8,8 @@ services:
           action: rebuild
     ports:
       - "5000:5000"
+    env_file:
+      - .env
     environment:
       - PORT=5000
     restart: unless-stopped
