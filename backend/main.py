@@ -8,6 +8,7 @@ from flask import Flask
 from flasgger import Swagger
 
 from controllers import health_bp
+from db import init_db
 
 BLUEPRINTS = (
     health_bp,
@@ -44,6 +45,7 @@ def create_app() -> Flask:
     for blueprint in BLUEPRINTS:
         app.register_blueprint(blueprint, url_prefix="/api")
     Swagger(app, template=SWAGGER_TEMPLATE, config=SWAGGER_CONFIG)
+    init_db(app)
     return app
 
 
