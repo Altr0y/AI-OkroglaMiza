@@ -1,10 +1,20 @@
+import re
 from typing import Any, Dict, List, Optional
+
+from psycopg2 import sql
 
 from .connection import execute_command, execute_query
 
 
+def _validate_identifier(name: str) -> bool:
+    """Validate that identifier contains only safe characters (alphanumeric and underscore)."""
+    return bool(re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', name))
+
+
 class Repository:
     def __init__(self, table_name: str):
+        if not _validate_identifier(table_name):
+            raise ValueError(f"Invalid table name: {table_name}")
         self.table_name = table_name
 
     def find_all(self, conditions: Optional[Dict[str, Any]] = None) -> List[Dict[str, Any]]:
@@ -16,17 +26,19 @@ class Repository:
         Returns:
             List of dictionaries representing the records
         """
-        query = f"SELECT * FROM {self.table_name}"
+        query = sql.SQL("SELECT * FROM {}").format(sql.Identifier(self.table_name))
         params = []
         
         if conditions:
             where_clauses = []
             for key, value in conditions.items():
-                where_clauses.append(f"{key} = %s")
+                if not _validate_identifier(key):
+                    raise ValueError(f"Invalid column name: {key}")
+                where_clauses.append(sql.SQL("{} = %s").format(sql.Identifier(key)))
                 params.append(value)
-            query += " WHERE " + " AND ".join(where_clauses)
+            query = sql.SQL("{} WHERE {}").format(query, sql.SQL(" AND ").join(where_clauses))
         
-        return execute_query(query, tuple(params) if params else None)
+        return execute_query(query.as_string(None), tuple(params) if params else None)
 
     def find_one(self, conditions: Dict[str, Any]) -> Optional[Dict[str, Any]]:
         """Find one record
@@ -60,12 +72,23 @@ class Repository:
         Returns:
             Dictionary representing the inserted record
         """
-        columns = ", ".join(data.keys())
+        if not data:
+            raise ValueError("Cannot insert empty data")
+        
+        for key in data.keys():
+            if not _validate_identifier(key):
+                raise ValueError(f"Invalid column name: {key}")
+        
+        columns = [sql.Identifier(key) for key in data.keys()]
         placeholders = ", ".join(["%s"] * len(data))
         values = tuple(data.values())
         
-        query = f"INSERT INTO {self.table_name} ({columns}) VALUES ({placeholders}) RETURNING *"
-        results = execute_query(query, values)
+        query = sql.SQL("INSERT INTO {} ({}) VALUES ({}) RETURNING *").format(
+            sql.Identifier(self.table_name),
+            sql.SQL(", ").join(columns),
+            sql.SQL(placeholders)
+        )
+        results = execute_query(query.as_string(None), values)
         return results[0] if results else None
 
     def update(self, conditions: Dict[str, Any], data: Dict[str, Any]) -> Optional[Dict[str, Any]]:
@@ -78,26 +101,32 @@ class Repository:
         Returns:
             Dictionary representing the updated record
         """
+        if not data:
+            raise ValueError("Cannot update with empty data")
+        
         set_clauses = []
         params = []
         
         for key, value in data.items():
-            set_clauses.append(f"{key} = %s")
+            if not _validate_identifier(key):
+                raise ValueError(f"Invalid column name: {key}")
+            set_clauses.append(sql.SQL("{} = %s").format(sql.Identifier(key)))
             params.append(value)
         
         where_clauses = []
         for key, value in conditions.items():
-            where_clauses.append(f"{key} = %s")
+            if not _validate_identifier(key):
+                raise ValueError(f"Invalid column name: {key}")
+            where_clauses.append(sql.SQL("{} = %s").format(sql.Identifier(key)))
             params.append(value)
         
-        query = (
-            f"UPDATE {self.table_name} "
-            f"SET {', '.join(set_clauses)} "
-            f"WHERE {' AND '.join(where_clauses)} "
-            f"RETURNING *"
+        query = sql.SQL("UPDATE {} SET {} WHERE {} RETURNING *").format(
+            sql.Identifier(self.table_name),
+            sql.SQL(", ").join(set_clauses),
+            sql.SQL(" AND ").join(where_clauses)
         )
         
-        results = execute_query(query, tuple(params))
+        results = execute_query(query.as_string(None), tuple(params))
         return results[0] if results else None
 
     def delete(self, conditions: Dict[str, Any]) -> None:
@@ -110,8 +139,13 @@ class Repository:
         params = []
         
         for key, value in conditions.items():
-            where_clauses.append(f"{key} = %s")
+            if not _validate_identifier(key):
+                raise ValueError(f"Invalid column name: {key}")
+            where_clauses.append(sql.SQL("{} = %s").format(sql.Identifier(key)))
             params.append(value)
         
-        query = f"DELETE FROM {self.table_name} WHERE {' AND '.join(where_clauses)}"
-        execute_command(query, tuple(params))
+        query = sql.SQL("DELETE FROM {} WHERE {}").format(
+            sql.Identifier(self.table_name),
+            sql.SQL(" AND ").join(where_clauses)
+        )
+        execute_command(query.as_string(None), tuple(params))

@@ -16,24 +16,29 @@ def get_connection():
 
 
 def execute_query(query, params=None):
-    conn = get_connection()
+    conn = None
     try:
+        conn = get_connection()
         with conn.cursor(cursor_factory=RealDictCursor) as cursor:
             cursor.execute(query, params)
             return cursor.fetchall()
     finally:
-        conn.close()
+        if conn:
+            conn.close()
 
 
 def execute_command(query, params=None):
-    conn = get_connection()
+    conn = None
     try:
+        conn = get_connection()
         with conn.cursor() as cursor:
             cursor.execute(query, params)
             conn.commit()
             return cursor.rowcount
     except Exception as e:
-        conn.rollback()
+        if conn:
+            conn.rollback()
         raise e
     finally:
-        conn.close()
+        if conn:
+            conn.close()
