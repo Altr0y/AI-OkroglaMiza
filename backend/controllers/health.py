@@ -6,14 +6,14 @@ health_bp = Blueprint("health", __name__)
 
 @health_bp.get("/health")
 def health_check():
-    """Preprost health check za preverjanje pripravljenosti.
+    """Health Check
 
     ---
     tags:
       - Zdravje
     responses:
       200:
-        description: Sistem deluje pravilno.
+        description: System ok.
         schema:
           type: object
           properties:

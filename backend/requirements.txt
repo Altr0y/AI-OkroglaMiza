@@ -1,3 +1,4 @@
 Flask==3.0.2
 Gunicorn==21.2.0
 Flasgger==0.9.7.1
+psycopg2-binary==2.9.9
