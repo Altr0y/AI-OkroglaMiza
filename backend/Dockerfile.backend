@@ -13,14 +13,20 @@ build-essential \
 
 # 2. Nastavitev okoljskih spremenljivk za llama-cpp-python
 # To pove prevajalniku, naj uporabi CUDA (GPU podporo)
-ENV LLAMA_CUDA=on
+ENV GGML_CUDA=on
 ENV FORCE_CMAKE=1
 
 WORKDIR /app
 
 # Kopiranje zahtev in namestitev
 COPY requirements.txt .
-RUN pip3 install --no-cache-dir -r requirements.txt
+
+# 1. Odstranimo llama-cpp-python iz requirements (če je notri), da ga zgradimo ročno s CUDA
+# 2. Namestimo ostalo
+# 3. Zgradimo llama-cpp-python z GPU podporo
+RUN pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir -r requirements.txt && \
+    pip3 install llama-cpp-python --force-reinstall --upgrade --no-cache-dir
 
 # Kopiranje kode
 COPY . .

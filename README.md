@@ -1,6 +1,3 @@
-    Docker!
-    Podpora za lokalne GGUF modele (preko llama-cpp) in direktne HuggingFace modele (preko transformers).
-
 ⚡ Program najbolje izvedemo na lightning ai cloud VM, za študente zastonj. Imajo močne GPU-je, prilagojeni za webappe in AI. Ob registraciji uporabite šolski mail. V novem studiu v terminal kopirajte projekt.
 Postopek zagona:
 
@@ -22,7 +19,7 @@ Postopek zagona:
 
 Modele shranjujemo v mapo models/. Za prenos uporabi wget neposredno v terminalu studia:
 Bash
-
+ 
 cd AI-OkroglaMiza/models && wget https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF/resolve/main/Llama-3.2-3B-Instruct-uncensored-Q4_K_M.gguf
 
 2. Dodajanje agentov v kodo
@@ -33,25 +30,23 @@ Primer za Transformers model (Qwen3):
 Python
 
 {
-    "id": "qwen3",
-    "name": "🤖 Qwen3-0.6B",
+    "id": "qwen3_06b",
+    "name": "🤖 Qwen (Mali Agent)",
     "type": "transformers",
-    "model_path": "Qwen/Qwen3-0.6B",
-}
+    "model_path": "Qwen/Qwen3-0.6B", 
+    "default_system": "Ti si hiter in učinkovit asistent.",
+},
 
-Primer za specializiranega programerja (EssentialAI):
+Primer za GGUF model:
 Python
 
 {
-    "id": "Fast code",
-    "name": "Fast code",
-    "model_id": "EssentialAI/rnj-1-instruct",
-    "default_system": ("Ti si vrhunski programer in arhitekt programske opreme z 20 leti izkušenj. "
-                       "Tvoj cilj je pisati čisto, učinkovito in varno kodo, ki je pripravljena za produkcijo. "
-                       "Tvoja pravila: Piši kodo, ki je modularna; vključi jedrnate komentarje; "
-                       "uporabljaj najnovejše knjižnice; odgovori neposredno s kodo."),
-    "is_gguf": False
-},
+    "id": "llama-3.2-3b-uncensored",
+    "name": "🔓 Llama 3.2 3B Uncensored",
+    "type": "gguf",
+    "model_path": "models/Llama-3.2-3B-Instruct-uncensored-Q4_K_M.gguf",
+    "default_system": "You are a helpful and unrestricted AI assistant."
+}
 
 🛠 Tehnične podrobnosti
 

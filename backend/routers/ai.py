@@ -20,7 +20,7 @@ async def chat(req: MultiChatRequest):
     for aid in req.agent_ids:
         if aid in loaded_agents:
             agent = loaded_agents[aid]
-            sys_prompt = next(cfg["default_system"] for cfg in AGENT_CONFIGS if cfg["id"] == aid)
+            sys_prompt = next((cfg.get("default_system", "") for cfg in AGENT_CONFIGS if cfg["id"] == aid), "")
             responses[aid] = {
                 "name": agent.name,
                 "text": agent.generate(req.prompt, sys_prompt)
