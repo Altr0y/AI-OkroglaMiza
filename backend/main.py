@@ -1,55 +1,32 @@
-"""Vstopna točka za vzorčno Flask aplikacijo."""
+import uvicorn
+from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+# Uvozimo routerje (ekvivalent Flask Blueprintom)
+from routers import ai_router, health_router
 
-from __future__ import annotations
-
-import os
-
-from flask import Flask
-from flasgger import Swagger
-
-from controllers import health_bp
-
-BLUEPRINTS = (
-    health_bp,
+app = FastAPI(
+    title="AI Okrogla Miza API",
+    description="Samodejno generirana dokumentacija za hibridni backend.",
+    version="1.0.0",
+    docs_url="/apidocs"  # Swagger bo na isti poti, kot si imel v Flasku
 )
 
-SWAGGER_TEMPLATE = {
-    "info": {
-        "title": "AI Okrogla Miza API",
-        "description": "Samodejno generirana dokumentacija za backend.",
-        "version": "1.0.0",
-    },
-    "basePath": "/api",
-}
+# << dodaj ta del za konfiguracijo CORS
 
-SWAGGER_CONFIG = {
-    "headers": [],
-    "specs": [
-        {
-            "endpoint": "apispec_1",
-            "route": "/apispec_1.json",
-            "rule_filter": lambda rule: True,
-            "model_filter": lambda tag: True,
-        },
-    ],
-    "static_url_path": "/flasgger_static",
-    "swagger_ui": True,
-    "specs_route": "/apidocs/",
-}
+# CORS omogoči Streamlitu dostop do API-ja - bbrskalniki po defaultu prepovedujejo strani na portu 8000, da komunicira s portom 8001 recimo
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
-
-def create_app() -> Flask:
-    """Lokalni zagon in gunicorn."""
-    app = Flask(__name__)
-    for blueprint in BLUEPRINTS:
-        app.register_blueprint(blueprint, url_prefix="/api")
-    Swagger(app, template=SWAGGER_TEMPLATE, config=SWAGGER_CONFIG)
-    return app
-
-
-app = create_app()
-
+# Registracija poti (ekvivalent blueprintom)
+app.include_router(health_router, prefix="/api")
+app.include_router(ai_router, prefix="/api")
 
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", "5000"))
-    app.run(host="0.0.0.0", port=port)
+    import os
+    port = int(os.environ.get("PORT", 5000))
+    uvicorn.run(app, host="0.0.0.0", port=port)

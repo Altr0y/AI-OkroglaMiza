@@ -1,13 +1,35 @@
+version: '3.8'
+
 services:
   backend:
     build:
       context: ./backend
-    develop:
-      watch:
-        - path: ./backend
-          action: rebuild
+      dockerfile: Dockerfile.backend
+    container_name: ai_backend
     ports:
       - "5000:5000"
+    volumes:
+      - ./backend:/app
+      - ./models:/app/models
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities: [gpu]
     environment:
       - PORT=5000
-    restart: unless-stopped
+      - CUDA_VISIBLE_DEVICES=0
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: ai_frontend
+    ports:
+      - "5501:5501"
+    environment:
+      - BACKEND_URL=http://backend:5000
+    depends_on:
+      - backend

@@ -1,0 +1,31 @@
+#Je python z vnaprej pripravljenim okoljem za ai in gpu (cuda gonilniki). devel pomeni, da lahko zgradimo llama-cpp-python knjižnjico
+FROM nvidia/cuda:12.1.1-devel-ubuntu22.04
+
+# Namestitev Pythona in sistemskih knjižnic
+RUN apt-get update && apt-get install -y \
+python3 \
+python3-pip \
+git \
+cmake \
+ninja-build \
+build-essential \
+&& rm -rf /var/lib/apt/lists/*
+
+# 2. Nastavitev okoljskih spremenljivk za llama-cpp-python
+# To pove prevajalniku, naj uporabi CUDA (GPU podporo)
+ENV LLAMA_CUDA=on
+ENV FORCE_CMAKE=1
+
+WORKDIR /app
+
+# Kopiranje zahtev in namestitev
+COPY requirements.txt .
+RUN pip3 install --no-cache-dir -r requirements.txt
+
+# Kopiranje kode
+COPY . .
+
+# Vrata za Flask
+EXPOSE 5000
+
+CMD ["python3", "main.py"]
