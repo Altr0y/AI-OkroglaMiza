@@ -4,14 +4,16 @@ from __future__ import annotations
 
 import os
 
-from flask import Flask
+from flask import Flask, jsonify
 from flasgger import Swagger
+from werkzeug.exceptions import Unauthorized
 
-from controllers import health_bp
+from controllers import health_bp, user_bp
 from db import init_db
 
 BLUEPRINTS = (
     health_bp,
+    user_bp,
 )
 
 SWAGGER_TEMPLATE = {
@@ -21,6 +23,14 @@ SWAGGER_TEMPLATE = {
         "version": "1.0.0",
     },
     "basePath": "/api",
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter your Supabase JWT token in the format: Bearer <token>",
+        }
+    },
 }
 
 SWAGGER_CONFIG = {
@@ -46,6 +56,12 @@ def create_app() -> Flask:
         app.register_blueprint(blueprint, url_prefix="/api")
     Swagger(app, template=SWAGGER_TEMPLATE, config=SWAGGER_CONFIG)
     init_db(app)
+
+    # Error handler for authentication errors
+    @app.errorhandler(Unauthorized)
+    def handle_unauthorized(e):
+        return jsonify({"error": str(e.description)}), 401
+
     return app
 
 
