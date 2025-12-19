@@ -1,2 +1,0 @@
-če želimo naložiti gguf model: (https link zamenjaš z linkom do izbranega modela), npr:
-cd gguf-modeli && wget https://huggingface.co/bartowski/Llama-3.2-3B-Instruct-uncensored-GGUF/resolve/main/Llama-3.2-3B-Instruct-uncensored-Q4_K_M.gguf

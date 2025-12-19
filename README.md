@@ -1,7 +1,5 @@
     Docker!
-
     Podpora za lokalne GGUF modele (preko llama-cpp) in direktne HuggingFace modele (preko transformers).
-
 
 ⚡ Program najbolje izvedemo na lightning ai cloud VM, za študente zastonj. Imajo močne GPU-je, prilagojeni za webappe in AI. Ob registraciji uporabite šolski mail. V novem studiu v terminal kopirajte projekt.
 Postopek zagona:
