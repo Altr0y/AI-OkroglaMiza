@@ -1,5 +1,3 @@
-version: '3.8'
-
 services:
   backend:
     build:
@@ -18,18 +16,8 @@ services:
             - driver: nvidia
               count: all
               capabilities: [gpu]
+    env_file:
+      - .env
     environment:
       - PORT=5000
-      - CUDA_VISIBLE_DEVICES=0
-
-  frontend:
-    build:
-      context: ./frontend
-      dockerfile: Dockerfile.frontend
-    container_name: ai_frontend
-    ports:
-      - "5501:5501"
-    environment:
-      - BACKEND_URL=http://backend:5000
-    depends_on:
-      - backend
+    restart: unless-stopped

@@ -1,30 +1,72 @@
-import uvicorn
-from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
-# Uvozimo routerje (ekvivalent Flask Blueprintom)
-from routers import ai_router, health_router
+"""Entry point for the Flask application."""
 
-app = FastAPI(
-    title="AI Okrogla Miza API",
-    description="Samodejno generirana dokumentacija za hibridni backend.",
-    version="1.0.0",
-    docs_url="/apidocs"  # Swagger bo na isti poti, kot si imel v Flasku
+from __future__ import annotations
+
+import os
+
+from flask import Flask, jsonify
+from flasgger import Swagger
+from werkzeug.exceptions import Unauthorized
+
+from controllers import health_bp, user_bp
+from db import init_db
+
+BLUEPRINTS = (
+    health_bp,
+    user_bp,
 )
 
-# << dodaj ta del za konfiguracijo CORS
+SWAGGER_TEMPLATE = {
+    "info": {
+        "title": "AI Okrogla Miza API",
+        "description": "Automatically generated documentation for the backend.",
+        "version": "1.0.0",
+    },
+    "basePath": "/api",
+    "securityDefinitions": {
+        "Bearer": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header",
+            "description": "Enter your Supabase JWT token in the format: Bearer <token>",
+        }
+    },
+}
 
-# CORS omogoči Streamlitu dostop do API-ja - bbrskalniki po defaultu prepovedujejo strani na portu 8000, da komunicira s portom 8001 recimo
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+SWAGGER_CONFIG = {
+    "headers": [],
+    "specs": [
+        {
+            "endpoint": "apispec_1",
+            "route": "/apispec_1.json",
+            "rule_filter": lambda rule: True,
+            "model_filter": lambda tag: True,
+        },
+    ],
+    "static_url_path": "/flasgger_static",
+    "swagger_ui": True,
+    "specs_route": "/apidocs/",
+}
 
-# Registracija poti (ekvivalent blueprintom)
-app.include_router(health_router, prefix="/api")
-app.include_router(ai_router, prefix="/api")
+
+def create_app() -> Flask:
+    """Local run and gunicorn."""
+    app = Flask(__name__)
+    for blueprint in BLUEPRINTS:
+        app.register_blueprint(blueprint, url_prefix="/api")
+    Swagger(app, template=SWAGGER_TEMPLATE, config=SWAGGER_CONFIG)
+    init_db(app)
+
+    # Error handler for authentication errors
+    @app.errorhandler(Unauthorized)
+    def handle_unauthorized(e):
+        return jsonify({"error": str(e.description)}), 401
+
+    return app
+
+
+app = create_app()
+
 
 if __name__ == "__main__":
     import os
