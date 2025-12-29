@@ -2,7 +2,7 @@ FROM python:3.9-slim
 WORKDIR /app
 COPY requirements.txt .
 
-RUN pip install fastapi uvicorn langchain langchain-community
+RUN pip install -r requirements.txt
 COPY . .
 
-CMD ["python", "backend/ai.py"]
+CMD ["python", "ai.py"]
