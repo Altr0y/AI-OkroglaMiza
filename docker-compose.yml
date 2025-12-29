@@ -1,10 +1,11 @@
 services:
-  backend:
+  backend_auth:
     build:
-      context: ./backend
+      context: ./backend_auth
+      dockerfile: Dockerfile
     develop:
       watch:
-        - path: ./backend
+        - path: ./backend_auth
           action: rebuild
     ports:
       - "5000:5000"
@@ -13,3 +14,35 @@ services:
     environment:
       - PORT=5000
     restart: unless-stopped
+
+  ai_backend:
+    build: 
+      context: ./backend_ai
+      dockerfile: Dockerfile 
+    develop:
+      watch:
+        - path: ./backend_ai
+          action: rebuild    
+    container_name: backend_ai
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
+    depends_on:
+      - ollama
+    
+
+  ollama:
+      image: ollama/ollama
+      container_name: ollama
+      ports:
+        - "11434:11434"
+      volumes:
+        - ./ollama_data:/root/.ollama
+      deploy:
+        resources:
+          reservations:
+            devices:
+              - driver: nvidia
+                count: all
+                capabilities: [gpu]
