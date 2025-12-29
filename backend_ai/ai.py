@@ -7,7 +7,7 @@ from typing import List
 from fastapi import FastAPI, Body
 from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
-from langchain_community.chat_models import ChatOllama
+from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage
 
 app = FastAPI()
@@ -22,25 +22,28 @@ class ChatRequest(BaseModel):
     query: str
     selected_agents: List[str]
 
-async def run_model_and_enqueue(agent_key, user_input, queue):
-  
+async def run_model_and_enqueue(agent_key: str, user_input: str, queue: asyncio.Queue):
     model_id = AGENTS_REGISTRY[agent_key]
     
-    llm = ChatOllama(model=model_id, temperature=0.7)
+    llm = ChatOllama(
+        model=model_id,
+        temperature=0.7,
+        base_url="http://127.0.0.1:11434"  # ← odkomentiraj če ollama ni na privzetem
+    )
     
     messages = [HumanMessage(content=user_input)]
     
     try:
         async for chunk in llm.astream(messages):
             await queue.put({
-                "agent_key": agent_key, 
+                "agent_key": agent_key,
                 "content": chunk.content,
                 "done": False
             })
     except Exception as e:
         await queue.put({
-            "agent_key": agent_key, 
-            "content": f"\nNapaka pri modelu {model_id}: {str(e)}", 
+            "agent_key": agent_key,
+            "content": f"\nNapaka pri modelu {model_id}: {str(e)}",
             "done": False
         })
     
@@ -49,13 +52,11 @@ async def run_model_and_enqueue(agent_key, user_input, queue):
 async def stream_manager(request: ChatRequest):
     queue = asyncio.Queue()
     
-    
     valid_agents = [k for k in request.selected_agents if k in AGENTS_REGISTRY]
     
     if not valid_agents:
         yield f"data: {json.dumps({'error': 'Noben veljaven agent ni bil izbran'})}\n\n"
         return
-
 
     tasks = [
         asyncio.create_task(run_model_and_enqueue(agent, request.query, queue))
@@ -78,5 +79,4 @@ async def chat_endpoint(request: ChatRequest = Body(...)):
     return StreamingResponse(stream_manager(request), media_type="text/event-stream")
 
 if __name__ == "__main__":
-    
     uvicorn.run(app, host="0.0.0.0", port=8000)
