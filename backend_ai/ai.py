@@ -28,7 +28,7 @@ async def run_model_and_enqueue(agent_key: str, user_input: str, queue: asyncio.
     llm = ChatOllama(
         model=model_id,
         temperature=0.7,
-        base_url="http://ollama:11434"  # ← odkomentiraj če ollama ni na privzetem
+        base_url="http://127.0.0.1:11434" 
     )
     
     messages = [HumanMessage(content=user_input)]
