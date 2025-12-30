@@ -12,3 +12,5 @@ build/
 .venv/
 venv/
 env/
+ollama_data/
+.ollama
