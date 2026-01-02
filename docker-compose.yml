@@ -46,3 +46,11 @@ services:
               - driver: nvidia
                 count: all
                 capabilities: [gpu]
+
+  frontend:
+    build:
+      context: ./frontend
+    ports: 
+     - "5001:80"
+    restart: unless-stopped
+    
