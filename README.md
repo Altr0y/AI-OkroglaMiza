@@ -67,3 +67,14 @@ git pull             # potegni zadnje spremembe iz GitHub-a
 ```
 
 Hvala lepa in želim uspešno programiranje!
+
+# Frontend - Next.js vzpostavitev projekta
+
+Ukazi za namestitev in zagon v razvojnem načinu:
+npm i
+npm run dev
+http://localhost:3000
+
+Za zgraditev projekta in zagon:
+npm run build
+npm start
