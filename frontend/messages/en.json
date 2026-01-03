@@ -4,7 +4,7 @@
     "description": "Next.js application for AI Roundtable"
   },
   "Localization": {
-    "locale": "EN",
+    "locale": "🇺🇸 EN",
     "name": "{locale, select, sl {Slovenian} en {English} other {Unknown}}"
   }
 }

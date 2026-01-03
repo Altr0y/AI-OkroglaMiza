@@ -4,7 +4,7 @@
     "description": "Next.js aplikacija za AI Okroglo Mizo"
   },
   "Localization": {
-    "locale": "SL",
+    "locale": "🇸🇮 SL",
     "name": "{locale, select, sl {Slovenščina} en {Angleščina} other {Unknown}}"
   }
 }
