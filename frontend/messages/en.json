@@ -1,0 +1,10 @@
+{
+  "HomePage": {
+    "title": "AI Roundtable",
+    "description": "Next.js application for AI Roundtable"
+  },
+  "Localization": {
+    "locale": "EN",
+    "name": "{locale, select, sl {Slovenian} en {English} other {Unknown}}"
+  }
+}
