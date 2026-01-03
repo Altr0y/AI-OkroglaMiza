@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
 
 import { Header } from '@/components/ui/header';
+import { Footer } from '@/components/ui/footer';
 
 export default function Home() {
   const t = useTranslations('HomePage');
@@ -72,6 +73,7 @@ export default function Home() {
           </a>
         </div>
       </main>
+      <Footer />
     </div>
   );
 }
