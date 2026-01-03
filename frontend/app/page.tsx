@@ -4,16 +4,11 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
 
-import { Header } from '@/components/ui/header';
-import { Footer } from '@/components/ui/footer';
-
 export default function Home() {
   const t = useTranslations('HomePage');
 
   return (
     <div className='flex min-h-screen flex-col font-sans'>
-      <Header />
-
       <main className='relative flex flex-1 w-full items-start justify-center'>
         {/* Background Image */}
         <Image
@@ -49,7 +44,6 @@ export default function Home() {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

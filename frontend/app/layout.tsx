@@ -4,6 +4,8 @@ import { cookies } from 'next/headers';
 import { getMessages } from 'next-intl/server';
 import './globals.css';
 import ClientProviders from '@/components/client-providers';
+import { Header } from '@/components/ui/header';
+import { Footer } from '@/components/ui/footer';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -34,7 +36,9 @@ export default async function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <ClientProviders locale={locale} messages={messages}>
-          {children}
+          <Header />
+          <div className='flex min-h-screen flex-col font-sans'>{children}</div>
+          <Footer />
         </ClientProviders>
       </body>
     </html>

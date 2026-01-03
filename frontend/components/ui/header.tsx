@@ -23,13 +23,15 @@ export function Header() {
       <div className='flex h-16 items-center justify-between px-4 w-full'>
         {/* Left side - Logo/Brand */}
         <div className='flex items-center'>
-          <Image
-            src='/logo.png'
-            alt='AI Roundtable logo'
-            width={50}
-            height={10}
-            priority
-          />
+          <a href='/'>
+            <Image
+              src='/logo.png'
+              alt='AI Roundtable logo'
+              width={50}
+              height={10}
+              priority
+            />
+          </a>
 
           <span className='text-xl font-bold'>{t('title')}</span>
         </div>
