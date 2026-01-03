@@ -70,11 +70,17 @@ Hvala lepa in želim uspešno programiranje!
 
 # Frontend - Next.js vzpostavitev projekta
 
-Ukazi za namestitev in zagon v razvojnem načinu:
+## Ukazi za namestitev in zagon v razvojnem načinu:
+```bash
 npm i
 npm run dev
-http://localhost:3000
+```
 
-Za zgraditev projekta in zagon:
+Spletno mesto dostopno na: http://localhost:3000
+
+
+## Build projekta in zagon:
+```bash
 npm run build
 npm start
+```
