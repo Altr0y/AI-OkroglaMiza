@@ -1,7 +1,8 @@
 {
   "HomePage": {
     "title": "AI Roundtable",
-    "description": "Next.js application for AI Roundtable"
+    "description": "Next.js application for AI Roundtable",
+    "description2": "Ask questions. Compare AI models. Get the best answer."
   },
   "Localization": {
     "locale": "🇺🇸 EN",

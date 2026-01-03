@@ -1,7 +1,8 @@
 {
   "HomePage": {
     "title": "AI Okrogla Miza",
-    "description": "Next.js aplikacija za AI Okroglo Mizo"
+    "description": "Next.js aplikacija za AI Okroglo Mizo",
+    "description2": "Postavljajte vprašanja. Primerjajte AI modele. Pridobite najboljši odgovor."
   },
   "Localization": {
     "locale": "🇸🇮 SL",
