@@ -63,5 +63,11 @@
     "emailPlaceholder": "Vnesite svoj e-poštni naslov",
     "resetPasswordButton": "Ponastavi geslo",
     "backToLogin": "Nazaj na prijavo"
+  },
+  "NotFoundPage": {
+    "title": "Stran ni bila najdena",
+    "description": "Stran, ki jo iščete ne obstaja, ali je bila premaknjena.",
+    "returnHomeButton": "Nazaj na domačo stran",
+    "contactSupport": "Če menite, da gre za napako, se obrnite na podporo."
   }
 }

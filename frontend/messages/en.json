@@ -63,5 +63,11 @@
     "emailPlaceholder": "Enter your email",
     "resetPasswordButton": "Reset Password",
     "backToLogin": "Back to login"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "returnHomeButton": "Return to Home Page",
+    "contactSupport": "If you believe this is an error, please contact support."
   }
 }
