@@ -33,16 +33,21 @@ services:
     
 
   ollama:
-      image: ollama/ollama
+      image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
       container_name: ollama
       ports:
         - "11434:11434"
       volumes:
         - ./ollama_data:/root/.ollama
+
+      devices:
+      - /dev/kfd
+      - /dev/dri
+      
       deploy:
         resources:
           reservations:
             devices:
-              - driver: nvidia
-                count: all
+              - driver: ${GPU_DRIVER:-none}
+                count: ${GPU_COUNT:-0}
                 capabilities: [gpu]
