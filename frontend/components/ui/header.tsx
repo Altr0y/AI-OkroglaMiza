@@ -17,6 +17,7 @@ import { Localization } from '@/components/localization';
 
 export function Header() {
   const t = useTranslations('HomePage');
+  const tLoginForm = useTranslations('LoginForm');
 
   return (
     <header className='sticky top-0 z-50 w-full border-b bg-white dark:bg-black'>
@@ -46,7 +47,7 @@ export function Header() {
             size='sm'
             className='bg-zinc-100 text-black hover:bg-zinc-200 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800'
           >
-            <a href='/login'>Login</a>
+            <a href='/login'>{tLoginForm('loginButton')}</a>
           </Button>
         </div>
       </div>

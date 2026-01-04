@@ -7,5 +7,21 @@
   "Localization": {
     "locale": "🇸🇮 SL",
     "name": "{locale, select, sl {Slovenščina} en {Angleščina} other {Unknown}}"
+  },
+  "LoginForm": {
+    "title": "Prijava v vaš račun",
+    "description": "Vnesite svoj e-poštni naslov za prijavo v vaš račun",
+    "email": "E-pošta",
+    "password": "Geslo",
+    "loginButton": "Prijava",
+    "forgotPassword": "Ste pozabili geslo?",
+    "signInWithGoogle": "Prijava z Google",
+    "noAccount": "Nimate računa?",
+    "register": "Registrirajte se"
+  },
+  "ToggleTheme": {
+    "light": "Svetlo",
+    "dark": "Temno",
+    "system": "Sistem"
   }
 }
