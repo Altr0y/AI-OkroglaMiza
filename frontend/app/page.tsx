@@ -37,7 +37,7 @@ export default function Home() {
         <div className='relative z-20 flex w-full max-w-7xl flex-col items-center justify-start pt-12 px-8'>
           <div className='flex flex-col items-center gap-6 text-center mb-8'>
             <Suspense fallback={<div>Loading...</div>}>
-              <h1 className='text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50'>
+              <h1 className='text-3xl font-bold leading-10 tracking-tight text-black dark:text-zinc-50'>
                 {t('title')}
               </h1>
               <p className='max-w-l text-lg text-zinc-600 dark:text-zinc-400'>

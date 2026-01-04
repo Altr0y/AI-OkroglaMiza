@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Geist, Geist_Mono } from 'next/font/google';
+import localFont from 'next/font/local';
+import { Geist_Mono } from 'next/font/google';
 import { cookies } from 'next/headers';
 import { getMessages } from 'next-intl/server';
 import './globals.css';
@@ -7,9 +8,9 @@ import ClientProviders from '@/components/client-providers';
 import { Header } from '@/components/ui/header';
 import { Footer } from '@/components/ui/footer';
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
-  subsets: ['latin'],
+const comfortaa = localFont({
+  src: '../public/fonts/Comfortaa-VariableFont_wght.ttf',
+  variable: '--font-comfortaa',
 });
 
 const geistMono = Geist_Mono({
@@ -30,10 +31,10 @@ export default async function RootLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale}>
+    <html lang={locale} suppressHydrationWarning>
       <head />
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${comfortaa.variable} ${geistMono.variable} antialiased`}
       >
         <ClientProviders locale={locale} messages={messages}>
           <Header />
