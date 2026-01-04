@@ -19,6 +19,21 @@
     "noAccount": "Don't have an account?",
     "register": "Sign up"
   },
+  "SignupForm": {
+    "title": "Create an account",
+    "description": "Enter your information below to create your account",
+    "name": "Full Name",
+    "email": "Email",
+    "emailDescription": "We'll use this to contact you. We will not share your email with anyone else.",
+    "password": "Password",
+    "passwordDescription": "Must be at least 8 characters long.",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordDescription": "Please confirm your password.",
+    "createAccountButton": "Create Account",
+    "signUpWithGoogle": "Sign up with Google",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in"
+  },
   "ToggleTheme": {
     "light": "Light",
     "dark": "Dark",

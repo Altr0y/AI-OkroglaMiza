@@ -59,7 +59,7 @@ export function LoginForm({
                 <Button type='submit'>{t('loginButton')}</Button>
                 <GoogleButton />
                 <FieldDescription className='text-center'>
-                  {t('noAccount')} <a href='#'>{t('register')}</a>
+                  {t('noAccount')} <a href='/signup'>{t('register')}</a>
                 </FieldDescription>
               </Field>
             </FieldGroup>

@@ -19,6 +19,21 @@
     "noAccount": "Nimate računa?",
     "register": "Registrirajte se"
   },
+  "SignupForm": {
+    "title": "Ustvarite račun",
+    "description": "Vnesite svoje podatke spodaj, da ustvarite račun",
+    "name": "Polno ime",
+    "email": "E-pošta",
+    "emailDescription": "Uporabili ga bomo za stik z vami. Vaš e-poštni naslov ne bomo delili z nikomer drugim.",
+    "password": "Geslo",
+    "passwordDescription": "Geslo mora biti dolgo vsaj 8 znakov.",
+    "confirmPassword": "Potrdite geslo",
+    "confirmPasswordDescription": "Prosimo, potrdite svoje geslo.",
+    "createAccountButton": "Ustvari račun",
+    "signUpWithGoogle": "Registrirajte se z Google",
+    "alreadyHaveAccount": "Že imate račun?",
+    "signIn": "Prijava"
+  },
   "ToggleTheme": {
     "light": "Svetlo",
     "dark": "Temno",
