@@ -47,5 +47,13 @@
     "light": "Svetlo",
     "dark": "Temno",
     "system": "Sistem"
+  },
+  "Demo": {
+    "title": "Kako lahko učinkovito preprečimo podnebne spremembe?",
+    "score": "Ocena",
+    "compareButton": "Primerjaj",
+    "bestButton": "Označi kot najboljši",
+    "reRunButton": "Ponovno zaženi krog",
+    "followUpQuestionInput": "Postavi naslednje vprašanje ..."
   }
 }

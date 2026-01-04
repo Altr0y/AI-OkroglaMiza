@@ -47,5 +47,13 @@
     "light": "Light",
     "dark": "Dark",
     "system": "System"
+  },
+  "Demo": {
+    "title": "How can we combat climate change effectively?",
+    "score": "Score",
+    "compareButton": "Compare",
+    "bestButton": "Mark as Best",
+    "reRunButton": "Re-Run Round",
+    "followUpQuestionInput": "Ask follow-up question..."
   }
 }

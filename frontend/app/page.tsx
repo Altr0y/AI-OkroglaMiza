@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
 
 import { SignupFormLanding } from '@/components/signup-form-landing';
+import { Demo } from '@/components/demo';
 
 export default function Home() {
   const t = useTranslations('HomePage');
@@ -33,8 +34,8 @@ export default function Home() {
         <div className='absolute inset-0 bg-white/0 dark:bg-black/70 z-10'></div>
 
         {/* Content */}
-        <div className='relative z-20 flex w-full max-w-3xl flex-col items-center justify-start pt-12 px-16'>
-          <div className='flex flex-col items-center gap-6 text-center'>
+        <div className='relative z-20 flex w-full max-w-7xl flex-col items-center justify-start pt-12 px-8'>
+          <div className='flex flex-col items-center gap-6 text-center mb-8'>
             <Suspense fallback={<div>Loading...</div>}>
               <h1 className='text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50'>
                 {t('title')}
@@ -45,8 +46,9 @@ export default function Home() {
             </Suspense>
           </div>
 
-          <div className='flex w-full max-w-6xl gap-8'>
+          <div className='flex w-full gap-8'>
             <SignupFormLanding />
+            <Demo />
           </div>
         </div>
       </main>
