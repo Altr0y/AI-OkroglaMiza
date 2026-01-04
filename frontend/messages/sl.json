@@ -55,5 +55,13 @@
     "bestButton": "Označi kot najboljši",
     "reRunButton": "Ponovno zaženi krog",
     "followUpQuestionInput": "Postavi naslednje vprašanje ..."
+  },
+  "ForgotPasswordForm": {
+    "title": "Pozabljeno geslo?",
+    "description": "Vnesite svoj e-poštni naslov in poslali vam bomo navodila za ponastavitev gesla",
+    "email": "E-poštni naslov",
+    "emailPlaceholder": "Vnesite svoj e-poštni naslov",
+    "resetPasswordButton": "Ponastavi geslo",
+    "backToLogin": "Nazaj na prijavo"
   }
 }

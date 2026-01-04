@@ -55,5 +55,13 @@
     "bestButton": "Mark as Best",
     "reRunButton": "Re-Run Round",
     "followUpQuestionInput": "Ask follow-up question..."
+  },
+  "ForgotPasswordForm": {
+    "title": "Forgot Password?",
+    "description": "Enter your email and we'll send you instructions to reset your password",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "resetPasswordButton": "Reset Password",
+    "backToLogin": "Back to login"
   }
 }
