@@ -34,6 +34,15 @@
     "alreadyHaveAccount": "Že imate račun?",
     "signIn": "Prijava"
   },
+  "SignupFormLanding": {
+    "signUpWithEmail": "Registrirajte se z e-pošto",
+    "signUpWithGoogle": "Registrirajte se z Google",
+    "description": "Z nadaljevanjem se strinjate z našimi ",
+    "terms": "pogoji storitve",
+    "privacyPolicy": "politiko zasebnosti",
+    "or": "ALI",
+    "and": " in "
+  },
   "ToggleTheme": {
     "light": "Svetlo",
     "dark": "Temno",

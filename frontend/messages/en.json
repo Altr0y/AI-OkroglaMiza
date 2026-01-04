@@ -34,6 +34,15 @@
     "alreadyHaveAccount": "Already have an account?",
     "signIn": "Sign in"
   },
+  "SignupFormLanding": {
+    "signUpWithEmail": "Sign up with Email",
+    "signUpWithGoogle": "Sign up with Google",
+    "description": "By continuing, you agree to our ",
+    "terms": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "or": "OR",
+    "and": " and "
+  },
   "ToggleTheme": {
     "light": "Light",
     "dark": "Dark",

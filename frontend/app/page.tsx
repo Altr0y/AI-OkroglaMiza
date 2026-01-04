@@ -4,6 +4,8 @@ import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
 
+import { SignupFormLanding } from '@/components/signup-form-landing';
+
 export default function Home() {
   const t = useTranslations('HomePage');
 
@@ -41,6 +43,10 @@ export default function Home() {
                 {t('description2')}
               </p>
             </Suspense>
+          </div>
+
+          <div className='flex w-full max-w-6xl gap-8'>
+            <SignupFormLanding />
           </div>
         </div>
       </main>
