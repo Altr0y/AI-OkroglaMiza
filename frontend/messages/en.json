@@ -13,9 +13,9 @@
     "description": "Enter your email below to login to your account",
     "email": "Email",
     "password": "Password",
-    "loginButton": "Login",
+    "loginButton": "Sign In",
     "forgotPassword": "Forgot Password?",
-    "signInWithGoogle": "Sign in with Google",
+    "signInWithGoogle": "Continue with Google",
     "noAccount": "Don't have an account?",
     "register": "Sign up"
   },

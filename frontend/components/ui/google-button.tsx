@@ -1,13 +1,14 @@
 import { useTranslations } from 'next-intl';
+import { Button } from '@/components/ui/button';
 
 export function GoogleButton() {
   const t = useTranslations('LoginForm');
 
   return (
-    <button
+    <Button
       type='button'
       aria-label='Sign in with Google'
-      className='flex items-center gap-3 bg-[#131314] rounded-md p-2 px-4 transition-colors duration-300 hover:bg-[#2c2c2e] w-full justify-center h-9'
+      className='flex items-center gap-3 bg-[#131314] rounded-md p-2 px-4 transition-colors duration-300 hover:bg-[#2c2c2e] border py-6 shadow-sm w-full justify-center h-9'
     >
       <div className='flex items-center justify-center bg-white w-6 h-6 rounded-full'>
         <svg
@@ -38,6 +39,6 @@ export function GoogleButton() {
       <span className='text-sm text-white tracking-wider'>
         {t('signInWithGoogle')}
       </span>
-    </button>
+    </Button>
   );
 }

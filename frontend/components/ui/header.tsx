@@ -41,12 +41,7 @@ export function Header() {
         <div className='flex items-center gap-2'>
           <Localization />
           <ModeToggle />
-          <Button
-            asChild
-            variant='default'
-            size='sm'
-            className='bg-zinc-100 text-black hover:bg-zinc-200 dark:bg-zinc-900 dark:text-white dark:hover:bg-zinc-800'
-          >
+          <Button asChild variant='default' size='sm'>
             <a href='/login'>{tLoginForm('loginButton')}</a>
           </Button>
         </div>

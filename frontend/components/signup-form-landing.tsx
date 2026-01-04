@@ -11,8 +11,8 @@ export function SignupFormLanding({
   const t = useTranslations('SignupFormLanding');
 
   return (
-    <div className='flex-1 flex flex-col justify-center gap-6 p-8 bg-[#e8f0f8] dark:bg-zinc-800 rounded-2xl'>
-      <div className='bg-white dark:bg-zinc-900 rounded-xl p-6 space-y-4'>
+    <div className='flex-1 flex flex-col justify-center gap-6 p-8 bg-[#e8f0f8] dark:bg-card border py-6 shadow-sm rounded-2xl'>
+      <div className='bg-white dark:bg-black/20 border rounded-xl p-6 space-y-4'>
         <GoogleButton />
 
         <div className='flex items-center gap-4'>
@@ -21,7 +21,11 @@ export function SignupFormLanding({
           <div className='flex-1 h-px bg-zinc-300 dark:bg-zinc-700'></div>
         </div>
 
-        <Button variant='outline' className='w-full' asChild>
+        <Button
+          variant='outline'
+          className='w-full border py-6 shadow-sm'
+          asChild
+        >
           <Link href='/signup'>{t('signUpWithEmail')}</Link>
         </Button>
       </div>
