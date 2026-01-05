@@ -8,7 +8,7 @@ export default function LoginPage() {
   const t = useTranslations('LoginPage');
 
   return (
-    <div className='flex min-h-screen items-center justify-center bg-zinc-50 dark:bg-black p-4'>
+    <div className='flex flex-1 items-center justify-center bg-zinc-50 dark:bg-black p-4'>
       <LoginForm className='w-full max-w-sm' />
     </div>
   );

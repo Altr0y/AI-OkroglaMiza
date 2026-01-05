@@ -26,7 +26,7 @@ export function Header() {
         <div className='flex items-center'>
           <a href='/'>
             <Image
-              src='/logo.png'
+              src='/logo2.png'
               alt='AI Roundtable logo'
               width={50}
               height={10}

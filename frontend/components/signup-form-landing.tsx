@@ -11,7 +11,7 @@ export function SignupFormLanding({
   const t = useTranslations('SignupFormLanding');
 
   return (
-    <div className='flex-1 flex flex-col justify-center gap-6 p-8 bg-[#e8f0f8] dark:bg-card border py-6 shadow-sm rounded-2xl'>
+    <div className='flex-1 flex flex-col justify-center gap-6 p-8 bg-[#e8f0f8] dark:bg-[#1e293b] border py-6 shadow-sm rounded-2xl'>
       <div className='bg-white dark:bg-black/20 border rounded-xl p-6 space-y-4'>
         <GoogleButton />
 
@@ -23,7 +23,7 @@ export function SignupFormLanding({
 
         <Button
           variant='outline'
-          className='w-full border py-6 shadow-sm'
+          className='w-full border bg-white shadow-sm'
           asChild
         >
           <Link href='/signup'>{t('signUpWithEmail')}</Link>

@@ -5,7 +5,7 @@ export function Demo() {
   const t = useTranslations('Demo');
 
   return (
-    <div className='flex-1 flex flex-col gap-4 p-8 bg-[#e8f0f8] border py-6 shadow-sm dark:bg-card rounded-2xl'>
+    <div className='flex-1 flex flex-col gap-4 p-8 bg-[#e8f0f8] border py-6 shadow-sm dark:bg-[#1e293b] rounded-2xl'>
       {/* Question Header */}
       <div className='flex items-center gap-2'>
         <div className='flex-1 h-px bg-zinc-400'></div>

@@ -31,15 +31,17 @@ export default async function RootLayout({
   const messages = await getMessages({ locale });
 
   return (
-    <html lang={locale} suppressHydrationWarning>
+    <html lang={locale}>
       <head />
       <body
         className={`${comfortaa.variable} ${geistMono.variable} antialiased`}
       >
         <ClientProviders locale={locale} messages={messages}>
-          <Header />
-          <div className='flex min-h-screen flex-col font-sans'>{children}</div>
-          <Footer />
+          <div className='flex min-h-screen flex-col font-sans'>
+            <Header />
+            {children}
+            <Footer />
+          </div>
         </ClientProviders>
       </body>
     </html>
