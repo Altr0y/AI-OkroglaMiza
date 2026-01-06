@@ -3,6 +3,12 @@
 import asyncio
 import json
 import uvicorn
+
+import os
+import time
+import logging
+from collections import defaultdict
+
 from typing import List
 from fastapi import FastAPI, Body
 from fastapi.responses import StreamingResponse
@@ -77,6 +83,18 @@ async def stream_manager(request: ChatRequest):
 @app.post("/api/round-table")
 async def chat_endpoint(request: ChatRequest = Body(...)):
     return StreamingResponse(stream_manager(request), media_type="text/event-stream")
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(message)s"
+)
+
+INTERNAL_API_TOKEN = os.getenv("INTERNAL_API_TOKEN", "dev-secret")
+
+RATE_LIMIT = 10
+WINDOW = 60
+_request_log = defaultdict(list)
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
