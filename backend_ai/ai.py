@@ -95,6 +95,40 @@ RATE_LIMIT = 10
 WINDOW = 60
 _request_log = defaultdict(list)
 
+MAX_QUERY_LEN = 1000
+MAX_AGENTS = 3
+
+@app.middleware("http")
+async def security_middleware(request: Request, call_next):
+    if request.url.path == "/api/round-table":
+        ip = request.client.host
+        now = time.time()
+
+        token = request.headers.get("X-Internal-Token")
+        if token != INTERNAL_API_TOKEN:
+            logging.warning(f"Forbidden request from {ip}")
+            raise HTTPException(status_code=403, detail="Forbidden")
+
+        _request_log[ip] = [t for t in _request_log[ip] if now - t < WINDOW]
+        if len(_request_log[ip]) >= RATE_LIMIT:
+            logging.warning(f"Rate limit exceeded from {ip}")
+            raise HTTPException(status_code=429, detail="Too many requests")
+        _request_log[ip].append(now)
+
+        body = await request.json()
+        query = body.get("query", "")
+        agents = body.get("selected_agents", [])
+
+        if len(query) > MAX_QUERY_LEN:
+            raise HTTPException(status_code=400, detail="Query too long")
+
+        if len(agents) > MAX_AGENTS:
+            raise HTTPException(status_code=400, detail="Too many agents")
+
+        logging.info(f"AI request from {ip} with {len(agents)} agents")
+
+    return await call_next(request)
+
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
