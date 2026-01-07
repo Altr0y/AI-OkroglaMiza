@@ -1,25 +1,28 @@
 import Image from "next/image";
 
+
+import { Button } from '@/components/ui/button';
+
 export default function GearButton() {
   return (
-    <button className="relative w-10 h-10">
-      {/* Light mode */}
-      <Image
-        src="/GearLightMode.png"
-        alt="Settings"
-        fill
-        className="object-contain dark:hidden"
-        priority
-      />
-
-      {/* Dark mode */}
-      <Image
-        src="/GearDarkMode.png"
-        alt="Settings"
-        fill
-        className="object-contain hidden dark:block"
-        priority
-      />
-    </button>
+    <Button variant="outline" size="icon">
+      <div className="relative w-5 h-5">
+        {/* light */}
+        <Image
+          src="/gear.png"
+          alt="Settings"
+          fill
+          className="object-contain dark:hidden"
+        />
+        {/* dark */}
+        <Image
+          src="/gear2.png"
+          alt="Settings"
+          fill
+          className="object-contain hidden dark:block"
+        />
+      </div>
+    </Button>
   );
 }
+

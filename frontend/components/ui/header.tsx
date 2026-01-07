@@ -42,10 +42,11 @@ export function Header() {
         <div className='flex items-center gap-2'>
           <Localization />
           <ModeToggle />
+          <SettingsButton/>
           <Button asChild variant='default' size='sm'>
             <a href='/login'>{tLoginForm('loginButton')}</a>
           </Button>
-          <SettingsButton/>
+          
         </div>
       </div>
     </header>
