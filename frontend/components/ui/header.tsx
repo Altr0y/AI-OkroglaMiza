@@ -10,6 +10,7 @@ import {
 } from '@/components/ui/navigation-menu';
 import { Button } from '@/components/ui/button';
 import { useTranslations } from 'next-intl';
+import SettingsButton from "@/components/ui/settings-button";
 import Image from 'next/image';
 
 import { ModeToggle } from '@/components/mode-toggle';
@@ -33,7 +34,7 @@ export function Header() {
               priority
             />
           </a>
-
+          
           <span className='text-xl font-bold'>{t('title')}</span>
         </div>
 
@@ -44,6 +45,7 @@ export function Header() {
           <Button asChild variant='default' size='sm'>
             <a href='/login'>{tLoginForm('loginButton')}</a>
           </Button>
+          <SettingsButton/>
         </div>
       </div>
     </header>
