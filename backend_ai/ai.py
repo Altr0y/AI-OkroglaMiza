@@ -2,12 +2,19 @@
 
 import asyncio
 import os
+import logging
 import uvicorn
+from datetime import datetime
 from typing import List, Dict, Tuple
 from fastapi import FastAPI, Body, HTTPException
 from pydantic import BaseModel
 from langchain_ollama import ChatOllama
 from langchain_core.messages import HumanMessage
+from langchain_community.tools import DuckDuckGoSearchRun
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
@@ -22,6 +29,14 @@ SUMMARY_MODEL = "deepseek-r1:1.5b"
 # Get Ollama host from environment variable, default to localhost for local development
 OLLAMA_BASE_URL = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
 
+# Initialize web search tool
+search_tool = DuckDuckGoSearchRun()
+
+def get_current_date_time() -> str:
+    """Get the current date and time in a readable format."""
+    now = datetime.now()
+    return now.strftime("%Y-%m-%d %H:%M:%S %Z")
+
 class ChatRequest(BaseModel):
     query: str
     selected_agents: List[str]
@@ -30,9 +45,9 @@ class ChatResponse(BaseModel):
     responses: Dict[str, str]
     summary: str
 
-async def run_model_and_collect(agent_key: str, user_input: str) -> Tuple[str, str]:
+async def run_model_and_collect(agent_key: str, user_input: str, search_results: str = "", search_performed: bool = False) -> Tuple[str, str]:
     """
-    Run a model and collect the complete response.
+    Run a model with web search capabilities and collect the complete response.
     Returns (agent_key, response_text) or (agent_key, error_message)
     """
     model_id = AGENTS_REGISTRY[agent_key]
@@ -43,9 +58,39 @@ async def run_model_and_collect(agent_key: str, user_input: str) -> Tuple[str, s
         base_url=OLLAMA_BASE_URL
     )
     
-    messages = [HumanMessage(content=user_input)]
-    
     try:
+        # Get current date and time
+        current_datetime = get_current_date_time()
+        
+        # Create a prompt that includes current date/time and search results
+        if search_performed and search_results and len(search_results.strip()) > 0:
+            logger.info(f"[{agent_key}] Using search results (length: {len(search_results)})")
+            prompt = f"""You are answering a question using REAL-TIME web search results. The current date is {current_datetime}.
+
+CRITICAL INSTRUCTIONS:
+1. IGNORE your training data/knowledge cutoff date
+2. ONLY use information from the web search results below
+3. The web search results contain the most current information available
+4. If the search results don't clearly answer the question, say "Based on the search results, I cannot determine [answer]"
+
+User question: {user_input}
+
+=== WEB SEARCH RESULTS (REAL-TIME INFORMATION) ===
+{search_results}
+=== END OF WEB SEARCH RESULTS ===
+
+Now answer the user's question using ONLY the information from the web search results above. Do not use your training data. Extract the answer directly from the search results."""
+        else:
+            # If search failed or returned no results, answer without search context but with date
+            logger.warning(f"[{agent_key}] Using fallback prompt without search results")
+            prompt = f"""Current date and time: {current_datetime}
+
+User question: {user_input}
+
+Answer the user's question to the best of your knowledge. Use the current date/time information when relevant."""
+        
+        messages = [HumanMessage(content=prompt)]
+        
         response_parts = []
         async for chunk in llm.astream(messages):
             if chunk.content:
@@ -60,6 +105,7 @@ async def run_model_and_collect(agent_key: str, user_input: str) -> Tuple[str, s
 async def collect_all_responses(request: ChatRequest) -> Dict[str, str]:
     """
     Collect complete responses from all selected models running in parallel.
+    Performs web search once and shares results with all models.
     Returns a dictionary mapping agent_key to response_text.
     """
     valid_agents = [k for k in request.selected_agents if k in AGENTS_REGISTRY]
@@ -67,8 +113,39 @@ async def collect_all_responses(request: ChatRequest) -> Dict[str, str]:
     if not valid_agents:
         raise ValueError("Noben veljaven agent ni bil izbran")
     
+    # Perform web search once for all models
+    # Try multiple search queries to get better results
+    search_results = ""
+    search_performed = False
+    try:
+        logger.info(f"Performing web search for query: {request.query}")
+        # First search with original query
+        search_results = search_tool.run(request.query)
+        
+        # If query is about "current" or "now", add a more specific search
+        if "current" in request.query.lower() or "now" in request.query.lower() or "today" in request.query.lower():
+            try:
+                # Try a more specific search with current date
+                current_date = datetime.now().strftime("%Y")
+                specific_query = f"{request.query} {current_date}"
+                additional_results = search_tool.run(specific_query)
+                if additional_results and len(additional_results) > len(search_results):
+                    search_results = additional_results
+                    logger.info(f"Using more specific search results")
+            except Exception:
+                pass  # Fall back to original search results
+        
+        search_performed = True
+        logger.info(f"Search completed. Results length: {len(search_results) if search_results else 0}")
+        if search_results:
+            logger.info(f"First 500 chars of search results: {search_results[:500]}")
+    except Exception as search_error:
+        logger.error(f"Web search failed: {str(search_error)}")
+        search_results = ""
+    
+    # Create tasks with shared search results
     tasks = [
-        asyncio.create_task(run_model_and_collect(agent, request.query))
+        asyncio.create_task(run_model_and_collect(agent, request.query, search_results, search_performed))
         for agent in valid_agents
     ]
     

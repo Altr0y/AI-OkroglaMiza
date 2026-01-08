@@ -2,4 +2,5 @@ fastapi
 uvicorn
 langchain
 langchain-community
-langchain-ollama 
+langchain-ollama
+ddgs 
