@@ -53,6 +53,14 @@ class ChatResponse(BaseModel):
     responses: Dict[str, str]
     summary: str
 
+class ModelInfo(BaseModel):
+    key: str
+    model_id: str
+    temperature: float
+
+class ModelsResponse(BaseModel):
+    models: List[ModelInfo]
+
 async def run_model_and_collect(agent_key: str, user_input: str, search_results: str = "", search_performed: bool = False) -> Tuple[str, str]:
     """
     Run a model with web search capabilities and collect the complete response.
@@ -211,6 +219,21 @@ async def generate_summary(responses: Dict[str, str], original_query: str) -> st
         return summary
     except Exception as e:
         return f"Napaka pri generiranju povzetka: {str(e)}"
+
+@app.get("/api/models", response_model=ModelsResponse)
+async def get_available_models():
+    """
+    Get all available models that can be selected for the round table chat.
+    """
+    models = [
+        ModelInfo(
+            key=key,
+            model_id=config["model_id"],
+            temperature=config.get("temperature", 0.7)
+        )
+        for key, config in MODEL_CONFIGS.items()
+    ]
+    return ModelsResponse(models=models)
 
 @app.post("/api/round-table", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest = Body(...)):
