@@ -16,13 +16,13 @@ services:
     restart: unless-stopped
 
   ai_backend:
-    build: 
+    build:
       context: ./backend_ai
-      dockerfile: Dockerfile 
+      dockerfile: Dockerfile
     develop:
       watch:
         - path: ./backend_ai
-          action: rebuild    
+          action: rebuild
     container_name: backend_ai
     ports:
       - "8000:8000"
@@ -30,24 +30,63 @@ services:
       - OLLAMA_HOST=http://ollama:11434
     depends_on:
       - ollama
-    
 
   ollama:
-      image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
-      container_name: ollama
-      ports:
-        - "11434:11434"
-      volumes:
-        - ./ollama_data:/root/.ollama
-
-      devices:
+    image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
+    container_name: ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ./ollama_data:/root/.ollama
+    healthcheck:
+      test: ["CMD-SHELL", "ollama list || exit 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+    # GPU Configuration:
+    # Set GPU_DRIVER and GPU_COUNT environment variables in .env file or export them
+    #
+    # For NVIDIA GPUs:
+    #   - Comment out devices section below (AMD devices)
+    #   - Set GPU_DRIVER=nvidia
+    #   - Set GPU_COUNT=1 (or number of GPUs you want to use)
+    #
+    # For AMD GPUs:
+    #   - Keep devices section below uncommented
+    #   - Set GPU_DRIVER= (empty string) or don't set it
+    #   - Set GPU_COUNT=0 or don't set it
+    #
+    # For CPU-only:
+    #   - Comment out devices section below
+    #   - Set GPU_DRIVER=none
+    #   - Set GPU_COUNT=0
+    devices:
       - /dev/kfd
       - /dev/dri
-      
-      deploy:
-        resources:
-          reservations:
-            devices:
-              - driver: ${GPU_DRIVER:-none}
-                count: ${GPU_COUNT:-0}
-                capabilities: [gpu]
+
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: ${GPU_DRIVER:-none}
+              count: ${GPU_COUNT:-0}
+              capabilities: [gpu]
+
+  ollama_model_puller:
+    image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
+    depends_on:
+      ollama:
+        condition: service_healthy
+    volumes:
+      - ./ollama_data:/root/.ollama
+    entrypoint: ["/bin/sh", "-c"]
+    command:
+      - |
+        echo "Pulling Ollama models..."
+        ollama pull qwen3:4b || echo "Failed to pull qwen3:4b"
+        ollama pull ministral-3:3b || echo "Failed to pull ministral-3:3b"
+        ollama pull deepseek-r1:1.5b || echo "Failed to pull deepseek-r1:1.5b"
+        echo "Model pulling completed!"
+    environment:
+      - OLLAMA_HOST=http://ollama:11434
