@@ -90,3 +90,22 @@ services:
         echo "Model pulling completed!"
     environment:
       - OLLAMA_HOST=http://ollama:11434
+      
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: frontend
+    develop:
+      watch:
+        - path: ./frontend
+          action: rebuild
+    ports:
+      - "3000:3000"
+    environment:
+      - NEXT_PUBLIC_API_URL=http://localhost:8000
+      - NEXT_PUBLIC_AUTH_URL=http://localhost:5000
+    depends_on:
+      - ai_backend
+      - backend_auth
+    restart: unless-stopped
