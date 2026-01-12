@@ -1,0 +1,104 @@
+{
+  "HomePage": {
+    "title": "AI Okrogla Miza",
+    "description": "Next.js aplikacija za AI Okroglo Mizo",
+    "description2": "Postavljajte vprašanja. Primerjajte AI modele. Pridobite najboljši odgovor."
+  },
+  "Localization": {
+    "locale": "🇸🇮 SL",
+    "name": "{locale, select, sl {Slovenščina} en {Angleščina} other {Unknown}}"
+  },
+  "LoginForm": {
+    "title": "Prijava v vaš račun",
+    "description": "Vnesite svoj e-poštni naslov za prijavo v vaš račun",
+    "email": "E-pošta",
+    "password": "Geslo",
+    "loginButton": "Prijava",
+    "forgotPassword": "Ste pozabili geslo?",
+    "signInWithGoogle": "Nadaljuj z Google",
+    "noAccount": "Nimate računa?",
+    "register": "Registrirajte se"
+  },
+  "SignupForm": {
+    "title": "Ustvarite račun",
+    "description": "Vnesite svoje podatke spodaj, da ustvarite račun",
+    "name": "Polno ime",
+    "email": "E-pošta",
+    "emailDescription": "Uporabili ga bomo za stik z vami. Vaš e-poštni naslov ne bomo delili z nikomer drugim.",
+    "password": "Geslo",
+    "passwordDescription": "Geslo mora biti dolgo vsaj 8 znakov.",
+    "confirmPassword": "Potrdite geslo",
+    "confirmPasswordDescription": "Prosimo, potrdite svoje geslo.",
+    "createAccountButton": "Ustvari račun",
+    "signUpWithGoogle": "Registrirajte se z Google",
+    "alreadyHaveAccount": "Že imate račun?",
+    "signIn": "Prijava"
+  },
+  "SignupFormLanding": {
+    "signUpWithEmail": "Registrirajte se z e-pošto",
+    "signUpWithGoogle": "Registrirajte se z Google",
+    "description": "Z nadaljevanjem se strinjate z našimi ",
+    "terms": "pogoji storitve",
+    "privacyPolicy": "politiko zasebnosti",
+    "or": "ALI",
+    "and": " in "
+  },
+  "ToggleTheme": {
+    "light": "Svetlo",
+    "dark": "Temno",
+    "system": "Sistem"
+  },
+  "Demo": {
+    "title": "Kako lahko učinkovito preprečimo podnebne spremembe?",
+    "score": "Ocena",
+    "compareButton": "Primerjaj",
+    "bestButton": "Označi kot najboljši",
+    "reRunButton": "Ponovno zaženi krog",
+    "followUpQuestionInput": "Postavi naslednje vprašanje ..."
+  },
+  "ForgotPasswordForm": {
+    "title": "Pozabljeno geslo?",
+    "description": "Vnesite svoj e-poštni naslov in poslali vam bomo navodila za ponastavitev gesla",
+    "email": "E-poštni naslov",
+    "emailPlaceholder": "Vnesite svoj e-poštni naslov",
+    "resetPasswordButton": "Ponastavi geslo",
+    "backToLogin": "Nazaj na prijavo"
+  },
+  "NotFoundPage": {
+    "title": "Stran ni bila najdena",
+    "description": "Stran, ki jo iščete ne obstaja, ali je bila premaknjena.",
+    "returnHomeButton": "Nazaj na domačo stran",
+    "contactSupport": "Če menite, da gre za napako, se obrnite na podporo."
+  },
+
+  "SettingsPage_dataControl" : {
+    "dataControlSet": "NASTAVITVE NADZORA PODATKOV",
+    "sharedLinks" : "Deljene povezave",
+    "archivedChats": "Arhivirani pogovori",
+    "archiveAllChats": "Arhiviraj vse pogovore",
+    "deleateAllChats": "Izbriši vse pogovore"
+},
+
+"SettingPage_notificationSet" :{
+    "notificationSet": "NASTAVITVE NOTIFIKACIJ",
+    "getNotifiedRes" : "Obveščaj, ko je vprašanje rešeno",
+    "getNotifiedGroup" : "Obveščaj, ko je skupina aktivna",
+    "getNotifiedTask" : "Obveščaj, ko je naloga zaključena"
+},
+
+"SettingPage_security" : {
+    "securitySet" : "SECURITY SETTINGS",
+    "multyFactor" : "Večfaktorska avtentikacija",
+    "logOut" : "Odjava iz te naprave",
+    "logOutAll" : "Odjava iz vseh naprav"
+},
+
+  "AboutUsPage" : {
+    "about us" : "O nas",
+    "close" : "Zapri",
+    "paragraph 1" : "Smo študentska ekipa z  Univerze FERI v Mariboru. Ta projekt nam je dodelil profesor Bojan Žlahtič v okviru predmeta RPO - Razvoj programske opreme.",
+    "paragraph 2" : "Naš cilj je razvijati kakovostne programske rešitve in pri tem uporabiti koncepte in metode, ki smo jih spoznali v okviru predmeta. S tem projektom pridobivamo praktične izkušnje pri oblikovanju, implementaciji in timskem delu.",
+    "paragraph 3" : "Za projekt smo imeli možnost izbrati poljubno temo, zato smo se odločili za razvoj AI pogovorne sobe, kjer lahko hkrati komuniciraš z več AI modeli in primerjaš njihove odgovore.",
+    "paragraph 4" : "Upamo, da vam bo naše delo všeč!"
+  }
+}

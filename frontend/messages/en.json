@@ -1,0 +1,103 @@
+{
+  "HomePage": {
+    "title": "AI Roundtable",
+    "description": "Next.js application for AI Roundtable",
+    "description2": "Ask questions. Compare AI models. Get the best answer."
+  },
+  "Localization": {
+    "locale": "🇺🇸 EN",
+    "name": "{locale, select, sl {Slovenian} en {English} other {Unknown}}"
+  },
+  "LoginForm": {
+    "title": "Login to your account",
+    "description": "Enter your email below to login to your account",
+    "email": "Email",
+    "password": "Password",
+    "loginButton": "Sign In",
+    "forgotPassword": "Forgot Password?",
+    "signInWithGoogle": "Continue with Google",
+    "noAccount": "Don't have an account?",
+    "register": "Sign up"
+  },
+  "SignupForm": {
+    "title": "Create an account",
+    "description": "Enter your information below to create your account",
+    "name": "Full Name",
+    "email": "Email",
+    "emailDescription": "We'll use this to contact you. We will not share your email with anyone else.",
+    "password": "Password",
+    "passwordDescription": "Must be at least 8 characters long.",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordDescription": "Please confirm your password.",
+    "createAccountButton": "Create Account",
+    "signUpWithGoogle": "Sign up with Google",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign in"
+  },
+  "SignupFormLanding": {
+    "signUpWithEmail": "Sign up with Email",
+    "signUpWithGoogle": "Sign up with Google",
+    "description": "By continuing, you agree to our ",
+    "terms": "Terms of Service",
+    "privacyPolicy": "Privacy Policy",
+    "or": "OR",
+    "and": " and "
+  },
+  "ToggleTheme": {
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System"
+  },
+  "Demo": {
+    "title": "How can we combat climate change effectively?",
+    "score": "Score",
+    "compareButton": "Compare",
+    "bestButton": "Mark as Best",
+    "reRunButton": "Re-Run Round",
+    "followUpQuestionInput": "Ask follow-up question..."
+  },
+  "ForgotPasswordForm": {
+    "title": "Forgot Password?",
+    "description": "Enter your email and we'll send you instructions to reset your password",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "resetPasswordButton": "Reset Password",
+    "backToLogin": "Back to login"
+  },
+  "NotFoundPage": {
+    "title": "Page Not Found",
+    "description": "The page you are looking for doesn't exist or has been moved.",
+    "returnHomeButton": "Return to Home Page",
+    "contactSupport": "If you believe this is an error, please contact support."
+  },
+  "SettingsPage_dataControl" : {
+    "dataControlSet": "DATA CONTROL SETTINGS",
+    "sharedLinks" : "Shared links",
+    "archivedChats": "Archived chats",
+    "archiveAllChats": "Archive all chats",
+    "deleateAllChats": "Delete all chats"
+  },
+
+  "SettingPage_notificationSet" :{
+    "notificationSet": "NOTIFICATION SETTINGS",
+    "getNotifiedRes" : "Get notified when question resolved",
+    "getNotifiedGroup" : "Get notified when group active",
+    "getNotifiedTask" : "Get notified when task completed"
+  },
+  
+  "SettingPage_security" : {
+  "securitySet" : "SECURITY SETTINGS",
+  "multyFactor" :"Multy factor authentification",
+  "logOut" : "Log out of this device",
+  "logOutAll" : "Log out of all devices"
+  },
+
+  "AboutUsPage" : {
+    "about us" : "About us",
+    "close" : "Close",
+    "paragraph 1" : "We are a student team from FERI, University of Maribor. This project was assigned to us by Professor Bojan Žlahtič as part of the course RPO - Razvoj programske opreme.",
+    "paragraph 2" : "Our goal is to develop high-quality software solutions while applying the concepts and methodologies learned in class. Through this project, we are gaining practical experience in software design, implementation, and teamwork.",
+    "paragraph 3" : "For this project, we had the freedom to choose any topic, so we decided to develop an AI chat room, where you can interact with multiple AI models simultaneously and compare their responses.",
+    "paragraph 4" : "We hope you enjoy exploring our work!"
+  }
+}
