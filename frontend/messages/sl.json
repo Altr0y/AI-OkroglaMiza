@@ -91,5 +91,14 @@
     "multyFactor" : "Večfaktorska avtentikacija",
     "logOut" : "Odjava iz te naprave",
     "logOutAll" : "Odjava iz vseh naprav"
-}
+},
+
+  "AboutUsPage" : {
+    "about us" : "O nas",
+    "close" : "Zapri",
+    "paragraph 1" : "Smo študentska ekipa z  Univerze FERI v Mariboru. Ta projekt nam je dodelil profesor Bojan Žlahtič v okviru predmeta RPO - Razvoj programske opreme.",
+    "paragraph 2" : "Naš cilj je razvijati kakovostne programske rešitve in pri tem uporabiti koncepte in metode, ki smo jih spoznali v okviru predmeta. S tem projektom pridobivamo praktične izkušnje pri oblikovanju, implementaciji in timskem delu.",
+    "paragraph 3" : "Za projekt smo imeli možnost izbrati poljubno temo, zato smo se odločili za razvoj AI pogovorne sobe, kjer lahko hkrati komuniciraš z več AI modeli in primerjaš njihove odgovore.",
+    "paragraph 4" : "Upamo, da vam bo naše delo všeč!"
+  }
 }
