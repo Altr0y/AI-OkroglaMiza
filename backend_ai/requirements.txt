@@ -3,3 +3,4 @@ uvicorn
 langchain
 langchain-community
 langchain-ollama 
+ddgs
