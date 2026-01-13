@@ -70,7 +70,7 @@ services:
           devices:
             - driver: ${GPU_DRIVER:-none}
               count: ${GPU_COUNT:-0}
-              capabilities: []
+              capabilities: [gpu]
 
   ollama_model_puller:
     image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
