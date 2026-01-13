@@ -4,7 +4,13 @@ import asyncio
 import json
 import os
 import logging
+import os
+import logging
 import uvicorn
+from datetime import datetime
+from pathlib import Path
+from typing import List, Dict, Tuple
+from fastapi import FastAPI, Body, HTTPException
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Tuple
@@ -17,9 +23,39 @@ from langchain_community.tools import DuckDuckGoSearchRun
 # Set up logging
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_community.tools import DuckDuckGoSearchRun
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 
 app = FastAPI()
 
+# Load configuration from config.json
+CONFIG_PATH = Path(__file__).parent / "config.json"
+with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
+    CONFIG = json.load(f)
+
+# Extract configuration
+AGENTS_REGISTRY = {key: config["model_id"] for key, config in CONFIG["models"].items()}
+MODEL_CONFIGS = CONFIG["models"]
+SUMMARY_MODEL_KEY = CONFIG["summary_model"]["key"]
+SUMMARY_MODEL = MODEL_CONFIGS[SUMMARY_MODEL_KEY]["model_id"]
+SUMMARY_SYSTEM_PROMPT = CONFIG["summary_model"]["system_prompt"]
+PROMPTS = CONFIG["prompts"]
+SEARCH_CONFIG = CONFIG["search"]
+
+# Get Ollama host from environment variable, default to localhost for local development
+OLLAMA_BASE_URL = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
+
+# Initialize web search tool
+search_tool = DuckDuckGoSearchRun()
+
+def get_current_date_time() -> str:
+    """Get the current date and time in a readable format."""
+    now = datetime.now()
+    return now.strftime("%Y-%m-%d %H:%M:%S %Z")
 # Load configuration from config.json
 CONFIG_PATH = Path(__file__).parent / "config.json"
 with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
