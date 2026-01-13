@@ -91,6 +91,7 @@
     "multyFactor" : "Večfaktorska avtentikacija",
     "logOut" : "Odjava iz te naprave",
     "logOutAll" : "Odjava iz vseh naprav"
+<<<<<<< HEAD
 },
 
   "AboutUsPage" : {
@@ -101,4 +102,7 @@
     "paragraph 3" : "Za projekt smo imeli možnost izbrati poljubno temo, zato smo se odločili za razvoj AI pogovorne sobe, kjer lahko hkrati komuniciraš z več AI modeli in primerjaš njihove odgovore.",
     "paragraph 4" : "Upamo, da vam bo naše delo všeč!"
   }
+=======
+}
+>>>>>>> dev
 }

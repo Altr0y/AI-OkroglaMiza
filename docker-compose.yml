@@ -90,7 +90,12 @@ services:
         echo "Model pulling completed!"
     environment:
       - OLLAMA_HOST=http://ollama:11434
+<<<<<<< HEAD
       
+=======
+                
+
+>>>>>>> dev
   frontend:
     build:
       context: ./frontend

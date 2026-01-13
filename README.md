@@ -34,7 +34,6 @@ Iz roota projekta:
 docker compose up # opcijsko -d (v ozadju)
 # na nekaterih sistemih docker-compose
 ```
-
 #### GPU Konfiguracija
 
 Projekt podpira NVIDIA, AMD in CPU-only konfiguracije. Nastavi spremenljivke v `.env` datoteki ali jih eksportiraj:
@@ -59,7 +58,6 @@ export GPU_DRIVER=none
 export GPU_COUNT=0
 ```
 V `docker-compose.yml` komentiraj sekcijo `devices`.
-
 Backend ima podporo za avtomatski reload z:
 ```bash
 docker compose watch
