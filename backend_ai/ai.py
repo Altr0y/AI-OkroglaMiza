@@ -4,13 +4,25 @@ import asyncio
 import json
 import os
 import logging
+import os
+import logging
 import uvicorn
+from datetime import datetime
+from pathlib import Path
+from typing import List, Dict, Tuple
+from fastapi import FastAPI, Body, HTTPException
 from datetime import datetime
 from pathlib import Path
 from typing import List, Dict, Tuple
 from fastapi import FastAPI, Body, HTTPException
 from pydantic import BaseModel
 from langchain_ollama import ChatOllama
+from langchain_core.messages import HumanMessage, SystemMessage
+from langchain_community.tools import DuckDuckGoSearchRun
+
+# Set up logging
+logging.basicConfig(level=logging.INFO)
+logger = logging.getLogger(__name__)
 from langchain_core.messages import HumanMessage, SystemMessage
 from langchain_community.tools import DuckDuckGoSearchRun
 
@@ -44,6 +56,30 @@ def get_current_date_time() -> str:
     """Get the current date and time in a readable format."""
     now = datetime.now()
     return now.strftime("%Y-%m-%d %H:%M:%S %Z")
+# Load configuration from config.json
+CONFIG_PATH = Path(__file__).parent / "config.json"
+with open(CONFIG_PATH, 'r', encoding='utf-8') as f:
+    CONFIG = json.load(f)
+
+# Extract configuration
+AGENTS_REGISTRY = {key: config["model_id"] for key, config in CONFIG["models"].items()}
+MODEL_CONFIGS = CONFIG["models"]
+SUMMARY_MODEL_KEY = CONFIG["summary_model"]["key"]
+SUMMARY_MODEL = MODEL_CONFIGS[SUMMARY_MODEL_KEY]["model_id"]
+SUMMARY_SYSTEM_PROMPT = CONFIG["summary_model"]["system_prompt"]
+PROMPTS = CONFIG["prompts"]
+SEARCH_CONFIG = CONFIG["search"]
+
+# Get Ollama host from environment variable, default to localhost for local development
+OLLAMA_BASE_URL = os.getenv("OLLAMA_HOST", "http://127.0.0.1:11434")
+
+# Initialize web search tool
+search_tool = DuckDuckGoSearchRun()
+
+def get_current_date_time() -> str:
+    """Get the current date and time in a readable format."""
+    now = datetime.now()
+    return now.strftime("%Y-%m-%d %H:%M:%S %Z")
 
 class ChatRequest(BaseModel):
     query: str
@@ -52,6 +88,14 @@ class ChatRequest(BaseModel):
 class ChatResponse(BaseModel):
     responses: Dict[str, str]
     summary: str
+
+class ModelInfo(BaseModel):
+    key: str
+    model_id: str
+    temperature: float
+
+class ModelsResponse(BaseModel):
+    models: List[ModelInfo]
 
 async def run_model_and_collect(agent_key: str, user_input: str, search_results: str = "", search_performed: bool = False) -> Tuple[str, str]:
     """
@@ -211,6 +255,21 @@ async def generate_summary(responses: Dict[str, str], original_query: str) -> st
         return summary
     except Exception as e:
         return f"Napaka pri generiranju povzetka: {str(e)}"
+
+@app.get("/api/models", response_model=ModelsResponse)
+async def get_available_models():
+    """
+    Get all available models that can be selected for the round table chat.
+    """
+    models = [
+        ModelInfo(
+            key=key,
+            model_id=config["model_id"],
+            temperature=config.get("temperature", 0.7)
+        )
+        for key, config in MODEL_CONFIGS.items()
+    ]
+    return ModelsResponse(models=models)
 
 @app.post("/api/round-table", response_model=ChatResponse)
 async def chat_endpoint(request: ChatRequest = Body(...)):
