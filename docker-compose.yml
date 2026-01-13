@@ -60,17 +60,17 @@ services:
     # For CPU-only:
     #   - Comment out devices section below
     #   - Comment out whole deploy section
-    devices:
-      - /dev/kfd
-      - /dev/dri
+    #devices:
+    #  - /dev/kfd
+    #  - /dev/dri
 
-    deploy:
-      resources:
-        reservations:
-          devices:
-            - driver: ${GPU_DRIVER:-none}
-              count: ${GPU_COUNT:-0}
-              capabilities: [gpu]
+    #deploy:
+    #  resources:
+    #    reservations:
+    #      devices:
+    #        - driver: ${GPU_DRIVER:-none}
+    #          count: ${GPU_COUNT:-0}
+    #          capabilities: [gpu]
 
   ollama_model_puller:
     image: ${OLLAMA_IMAGE:-ollama/ollama:latest}
@@ -96,6 +96,8 @@ services:
       context: ./frontend
       dockerfile: Dockerfile
     container_name: frontend
+    env_file:
+      - ./frontend/.env.locale
     develop:
       watch:
         - path: ./frontend
