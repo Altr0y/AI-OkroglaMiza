@@ -60,9 +60,9 @@ services:
     # For CPU-only:
     #   - Comment out devices section below
     #   - Comment out whole deploy section
-    #devices:
-    #  - /dev/kfd
-    #  - /dev/dri
+    devices:
+      - /dev/kfd
+      - /dev/dri
 
     #deploy:
     #  resources:
