@@ -59,8 +59,7 @@ services:
     #
     # For CPU-only:
     #   - Comment out devices section below
-    #   - Set GPU_DRIVER=none
-    #   - Set GPU_COUNT=0
+    #   - Comment out whole deploy section
     devices:
       - /dev/kfd
       - /dev/dri
