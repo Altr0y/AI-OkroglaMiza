@@ -200,6 +200,20 @@ export function Slot({
     setReels(["⭐", "🍒", "🔔"]);
   }
 
+  React.useEffect(() => {
+    if (!open) return;
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.code === "Space" || e.key === " ") {
+        e.preventDefault();
+        spin();
+      }
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    return () => window.removeEventListener("keydown", onKeyDown);
+  }, [open, spin]);
+
   if (!open) return null;
 
   const wrapperClass = centerInParent ? "w-full flex items-center justify-center" : "w-full";
@@ -289,7 +303,7 @@ export function Slot({
             </Button>
           </div>
 
-          {/* Credits pill w/ flash + bump (bolj opaque) */}
+          {/* Credits pill w/ flash + bump*/}
           <div className="flex justify-center">
             <div
               className={[

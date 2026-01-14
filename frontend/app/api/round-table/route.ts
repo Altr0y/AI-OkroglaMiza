@@ -1,19 +1,26 @@
+import { Agent } from 'undici';
 import { NextResponse } from 'next/server';
+
+const TIMEOUT_MS = 10 * 60 * 1000;
+
+const dispatcher = new Agent({
+  headersTimeout: TIMEOUT_MS,
+  bodyTimeout: TIMEOUT_MS,
+});
 
 export async function POST(req: Request) {
   const base =
     process.env.API_URL?.replace(/\/$/, '') ||
-    process.env.NEXT_PUBLIC_API_URL?.replace(/\/$/, '') ||
-    'http://localhost:8000';
+    'http://backend_ai:8000';
 
   const body = await req.text();
 
-  // npr. 10 minut (nastavi po potrebi)
-  const TIMEOUT_MS = 10 * 60 * 1000;
   const controller = new AbortController();
   const timeoutId = setTimeout(() => controller.abort(), TIMEOUT_MS);
 
   try {
+    //console.log('Proxy url:', `${base}/api/round-table`);
+
     const upstream = await fetch(`${base}/api/round-table`, {
       method: 'POST',
       headers: {
@@ -23,7 +30,8 @@ export async function POST(req: Request) {
       body,
       cache: 'no-store',
       signal: controller.signal,
-    });
+      dispatcher,
+    } as any);
 
     const text = await upstream.text();
 
@@ -34,7 +42,8 @@ export async function POST(req: Request) {
       },
     });
   } catch (e: any) {
-    // če timeout/abort
+    //console.error('UPSTREAM FETCH FAILED', e?.cause ?? e);
+
     if (e?.name === 'AbortError') {
       return NextResponse.json(
         { error: 'Upstream timeout (round-table took too long).' },
@@ -43,7 +52,11 @@ export async function POST(req: Request) {
     }
 
     return NextResponse.json(
-      { error: `Proxy fetch failed: ${e?.message ?? 'unknown error'}` },
+      {
+        error: 'Proxy fetch failed',
+        message: e?.message,
+        cause: e?.cause ? String(e.cause) : undefined,
+      },
       { status: 502 }
     );
   } finally {

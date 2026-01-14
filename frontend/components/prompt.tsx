@@ -15,7 +15,7 @@ type RoundTableResponse = {
   summary: string;
 };
 
-const USE_MOCK = true;
+const USE_MOCK = false;
 const MOCK_RESPONSE : RoundTableResponse= {
   "responses": {
     "qwen": "Based on the search results, I cannot determine in which year Slovenia declared independence. The provided web search results only contain information about the video game \"DoomRL\" (a roguelike adaptation of Doom), with no information about Slovenia's independence history.",

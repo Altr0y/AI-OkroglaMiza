@@ -2,7 +2,7 @@
 
 import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent} from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Slot } from './slot';
 
@@ -27,14 +27,6 @@ export function PromptResponses({
   summary,
 }: PromptResponsesProps) {
   const t = useTranslations('PromptResponses');
-  const [showSlot, setShowSlot] = useState(true);
-  // if (loading) {
-  //   return <div className="text-sm text-zinc-500">Generiram odgovore…</div>;
-  // }
-
-  // if (error) {
-  //   return <div className="text-sm text-red-600">{error}</div>;
-  // }      to sem prestavila pod use memo, org je blo nad
 
   const tabs = useMemo<TabItem[]>(() => {
     const items: TabItem[] = [];
@@ -60,14 +52,15 @@ export function PromptResponses({
     return items;
   }, [responses, summary]);
 
-  loading = true;
-  if (loading) {
-    return <div className="text-sm text-zinc-500"><Slot open={loading}/></div>;
+    if (loading) {
+    return <Slot open={loading}/>;
   }
 
   if (error) {
     return <div className="text-sm text-red-600">{error}</div>;
   }
+
+
 
   if (tabs.length === 0) {
     return (
