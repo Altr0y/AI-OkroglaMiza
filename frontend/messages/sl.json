@@ -91,7 +91,10 @@
     "logOutAll": "Odjava iz vseh naprav"
   },
   "Prompt": {
-    "loadingUser": "Nalagam uporabnika"
+    "loadingUser": "Nalagam uporabnika",
+    "errLoadingModels" : "Napaka pri nalaganju modelov",
+    "errSendPrompt":  "Napaka pri pošiljanju vprašanja",
+    "placeholderPrompt": "npr. Katero leto se je Slovenija osamosvojila?"
   },
   "PromptButtons": {
     "chooseModels": "Izberi modele",
@@ -100,5 +103,10 @@
     "selectOne": "Izberi enega",
     "selectAll": "Izberi vse",
     "selected": "Izbrani"
+  },
+  "PromptResponses":{
+    "placeholderBeforeSend" : "Tukaj se bodo prikazali odgovori ...",
+    "summary": "Povzetek",
+    "generatingAnswers": "Generiranje odgovorov ..."
   }
 }

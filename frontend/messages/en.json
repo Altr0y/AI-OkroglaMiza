@@ -91,7 +91,10 @@
     "logOutAll": "Log out of all devices"
   },
   "Prompt": {
-    "loadingUser": "Loading User"
+    "loadingUser": "Loading User",
+    "errLoadingModels" : "Error Loading Avaliable Models",
+    "errSendPrompt":  "Error Sending Question",
+    "placeholderPrompt": "e.g. In which year did the United States gain independence?"
   },
   "PromptButtons": {
     "chooseModels": "Select Models",
@@ -100,5 +103,10 @@
     "selectOne": "Select One",
     "selectAll": "Select All",
     "selected": "Selected"
+  },
+  "PromptResponses":{
+    "placeholderBeforeSend" : "Answers will appear here ...",
+    "summary": "Summary",
+    "generatingAnswers": "Generating answers ..."
   }
 }
