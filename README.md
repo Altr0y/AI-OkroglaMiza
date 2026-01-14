@@ -34,6 +34,54 @@ Iz roota projekta:
 docker compose up # opcijsko -d (v ozadju)
 # na nekaterih sistemih docker-compose
 ```
+#### GPU Konfiguracija
+
+Projekt podpira NVIDIA, AMD in CPU-only konfiguracije. Nastavi spremenljivke v `.env` datoteki ali jih eksportiraj:
+
+**Za NVIDIA GPU:**
+```bash
+export GPU_DRIVER=nvidia
+export GPU_COUNT=1  # ali število GPU-jev ki jih želiš uporabiti
+```
+V `docker-compose.yml` komentiraj sekcijo `devices` (vrstice z `/dev/kfd` in `/dev/dri`).
+
+**Za AMD GPU:**
+```bash
+export GPU_DRIVER=  # prazno ali sploh ne nastavi
+export GPU_COUNT=0  # ali sploh ne nastavi
+```
+V `docker-compose.yml` pusti sekcijo `devices` odkomentirano.
+
+**Za CPU-only (brez GPU):**
+```bash
+export GPU_DRIVER=none
+export GPU_COUNT=0
+```
+V `docker-compose.yml` komentiraj sekcijo `devices`.
+#### GPU Konfiguracija
+
+Projekt podpira NVIDIA, AMD in CPU-only konfiguracije. Nastavi spremenljivke v `.env` datoteki ali jih eksportiraj:
+
+**Za NVIDIA GPU:**
+```bash
+export GPU_DRIVER=nvidia
+export GPU_COUNT=1  # ali število GPU-jev ki jih želiš uporabiti
+```
+V `docker-compose.yml` komentiraj sekcijo `devices` (vrstice z `/dev/kfd` in `/dev/dri`).
+
+**Za AMD GPU:**
+```bash
+export GPU_DRIVER=  # prazno ali sploh ne nastavi
+export GPU_COUNT=0  # ali sploh ne nastavi
+```
+V `docker-compose.yml` pusti sekcijo `devices` odkomentirano.
+
+**Za CPU-only (brez GPU):**
+```bash
+export GPU_DRIVER=none
+export GPU_COUNT=0
+```
+V `docker-compose.yml` komentiraj sekcijo `devices`.
 
 Backend ima podporo za avtomatski reload z:
 ```bash
@@ -67,3 +115,20 @@ git pull             # potegni zadnje spremembe iz GitHub-a
 ```
 
 Hvala lepa in želim uspešno programiranje!
+
+# Frontend - Next.js vzpostavitev projekta
+
+## Ukazi za namestitev in zagon v razvojnem načinu:
+```bash
+npm i
+npm run dev
+```
+
+Spletno mesto dostopno na: http://localhost:3000
+
+
+## Build projekta in zagon:
+```bash
+npm run build
+npm start
+```
