@@ -15,13 +15,15 @@ export default function ClientProviders({
 }>) {
   const [mounted, setMounted] = useState(false);
 
+  const timeZone = 'Europe/Ljubljana';
+
   useEffect(() => {
     setMounted(true);
   }, []);
 
   if (!mounted) {
     return (
-      <NextIntlClientProvider locale={locale} messages={messages}>
+      <NextIntlClientProvider locale={locale} messages={messages} timeZone={timeZone}>
         {children}
       </NextIntlClientProvider>
     );
@@ -35,7 +37,7 @@ export default function ClientProviders({
       disableTransitionOnChange
       enableColorScheme={false}
     >
-      <NextIntlClientProvider locale={locale} messages={messages}>
+      <NextIntlClientProvider locale={locale} messages={messages} timeZone={timeZone}>
         {children}
       </NextIntlClientProvider>
     </ThemeProvider>

@@ -71,28 +71,34 @@
     "returnHomeButton": "Return to Home Page",
     "contactSupport": "If you believe this is an error, please contact support."
   },
-  "SettingsPage_dataControl" : {
+  "SettingsPage_dataControl": {
     "dataControlSet": "DATA CONTROL SETTINGS",
-    "sharedLinks" : "Shared links",
+    "sharedLinks": "Shared links",
     "archivedChats": "Archived chats",
     "archiveAllChats": "Archive all chats",
     "deleateAllChats": "Delete all chats"
   },
-
-  "SettingPage_notificationSet" :{
+  "SettingPage_notificationSet": {
     "notificationSet": "NOTIFICATION SETTINGS",
-    "getNotifiedRes" : "Get notified when question resolved",
-    "getNotifiedGroup" : "Get notified when group active",
-    "getNotifiedTask" : "Get notified when task completed"
+    "getNotifiedRes": "Get notified when question resolved",
+    "getNotifiedGroup": "Get notified when group active",
+    "getNotifiedTask": "Get notified when task completed"
   },
-  
-  "SettingPage_security" : {
-  "securitySet" : "SECURITY SETTINGS",
-  "multyFactor" :"Multy factor authentification",
-  "logOut" : "Log out of this device",
-  "logOutAll" : "Log out of all devices"
+  "SettingPage_security": {
+    "securitySet": "SECURITY SETTINGS",
+    "multyFactor": "Multy factor authentification",
+    "logOut": "Log out of this device",
+    "logOutAll": "Log out of all devices"
   },
   "Prompt": {
     "loadingUser": "Loading User"
+  },
+  "PromptButtons": {
+    "chooseModels": "Select Models",
+    "loadingModels": "Loading Avaliable Models",
+    "zeroModels": "No Avaliable Models",
+    "selectOne": "Select One",
+    "selectAll": "Select All",
+    "selected": "Selected"
   }
 }

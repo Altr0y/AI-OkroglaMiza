@@ -92,5 +92,13 @@
   },
   "Prompt": {
     "loadingUser": "Nalagam uporabnika"
+  },
+  "PromptButtons": {
+    "chooseModels": "Izberi modele",
+    "loadingModels": "Nalagam razpoložljive modele",
+    "zeroModels": "Ni razpoložljivih modelov",
+    "selectOne": "Izberi enega",
+    "selectAll": "Izberi vse",
+    "selected": "Izbrani"
   }
 }
