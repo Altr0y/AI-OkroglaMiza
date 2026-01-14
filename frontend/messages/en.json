@@ -91,6 +91,13 @@
   "logOut" : "Log out of this device",
   "logOutAll" : "Log out of all devices"
   },
+  
+  "SettingPage_options" : {
+  "general" : "General",
+  "notifications" :"Notifications",
+  "security" : "Security",
+  "close" : "Close"
+  },
 
   "AboutUsPage" : {
     "about us" : "About us",

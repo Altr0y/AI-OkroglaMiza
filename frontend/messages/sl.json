@@ -93,6 +93,13 @@
     "logOutAll" : "Odjava iz vseh naprav"
 },
 
+  "SettingPage_options" : {
+  "general" : "Splošno",
+  "notifications" :"Obvestila",
+  "security" : "Varnost",
+  "close" : "Zapri"
+  },
+
   "AboutUsPage" : {
     "about us" : "O nas",
     "close" : "Zapri",

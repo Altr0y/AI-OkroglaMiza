@@ -12,6 +12,7 @@ export default function SettingsButton() {
   const t = useTranslations('SettingsPage_dataControl')
   const a = useTranslations('SettingPage_notificationSet')
   const c = useTranslations('SettingPage_security')
+  const o = useTranslations('SettingPage_options')
 
   return (
     <>
@@ -37,10 +38,10 @@ export default function SettingsButton() {
           <div className="w-[32rem] rounded-lg bg-white dark:bg-black p-0 flex">
 
             <div className="w-[30%] p-4 border-r dark:border-white/10">
-              <Button className="mt-4 w-30" onClick={() => setSettings(0)}>General</Button>
-              <Button className="mt-4 w-30" onClick={() => setSettings(1)}>Notifications</Button>
-              <Button className="mt-4 w-30" onClick={() => setSettings(2)}>Security</Button>
-              <Button className="mt-4" onClick={() => setOpen(false)}>Zapri</Button>
+              <Button className="mt-4 w-30" onClick={() => setSettings(0)}>{o('general')}</Button>
+              <Button className="mt-4 w-30" onClick={() => setSettings(1)}>{o('notifications')}</Button>
+              <Button className="mt-4 w-30" onClick={() => setSettings(2)}>{o('security')}</Button>
+              <Button className="mt-4" onClick={() => setOpen(false)}>{o('close')}</Button>
             </div>
 
             <div className="w-[70%] p-4">
