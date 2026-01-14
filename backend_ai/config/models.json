@@ -1,0 +1,14 @@
+{
+    "providers": {
+      "openai": {
+        "model_id": "gpt-4o-mini",
+        "max_tokens": 300,
+        "temperature": 0.7
+      }
+    },
+    "system_prompts": {
+      "default": "You are a helpful AI assistant. Answer questions accurately and concisely.",
+      "summary": "You are a summarization assistant. Keep summaries under 200 characters."
+    }
+  }
+  
