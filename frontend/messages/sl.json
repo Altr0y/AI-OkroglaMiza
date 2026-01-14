@@ -2,7 +2,8 @@
   "HomePage": {
     "title": "AI Okrogla Miza",
     "description": "Next.js aplikacija za AI Okroglo Mizo",
-    "description2": "Postavljajte vprašanja. Primerjajte AI modele. Pridobite najboljši odgovor."
+    "description2": "Postavljajte vprašanja. Primerjajte AI modele. Pridobite najboljši odgovor.",
+    "loading": "Nalagam"
   },
   "Localization": {
     "locale": "🇸🇮 SL",
@@ -70,36 +71,31 @@
     "returnHomeButton": "Nazaj na domačo stran",
     "contactSupport": "Če menite, da gre za napako, se obrnite na podporo."
   },
-
-  "SettingsPage_dataControl" : {
+  "SettingsPage_dataControl": {
     "dataControlSet": "NASTAVITVE NADZORA PODATKOV",
-    "sharedLinks" : "Deljene povezave",
+    "sharedLinks": "Deljene povezave",
     "archivedChats": "Arhivirani pogovori",
     "archiveAllChats": "Arhiviraj vse pogovore",
     "deleateAllChats": "Izbriši vse pogovore"
-},
-
-"SettingPage_notificationSet" :{
+  },
+  "SettingPage_notificationSet": {
     "notificationSet": "NASTAVITVE NOTIFIKACIJ",
-    "getNotifiedRes" : "Obveščaj, ko je vprašanje rešeno",
-    "getNotifiedGroup" : "Obveščaj, ko je skupina aktivna",
-    "getNotifiedTask" : "Obveščaj, ko je naloga zaključena"
-},
-
+    "getNotifiedRes": "Obveščaj, ko je vprašanje rešeno",
+    "getNotifiedGroup": "Obveščaj, ko je skupina aktivna",
+    "getNotifiedTask": "Obveščaj, ko je naloga zaključena"
+  },
 "SettingPage_security" : {
     "securitySet" : "SECURITY SETTINGS",
     "multyFactor" : "Večfaktorska avtentikacija",
     "logOut" : "Odjava iz te naprave",
     "logOutAll" : "Odjava iz vseh naprav"
-},
-
+  },
   "SettingPage_options" : {
   "general" : "Splošno",
   "notifications" :"Obvestila",
   "security" : "Varnost",
   "close" : "Zapri"
   },
-
   "AboutUsPage" : {
     "about us" : "O nas",
     "close" : "Zapri",
@@ -107,5 +103,30 @@
     "paragraph 2" : "Naš cilj je razvijati kakovostne programske rešitve in pri tem uporabiti koncepte in metode, ki smo jih spoznali v okviru predmeta. S tem projektom pridobivamo praktične izkušnje pri oblikovanju, implementaciji in timskem delu.",
     "paragraph 3" : "Za projekt smo imeli možnost izbrati poljubno temo, zato smo se odločili za razvoj AI pogovorne sobe, kjer lahko hkrati komuniciraš z več AI modeli in primerjaš njihove odgovore.",
     "paragraph 4" : "Upamo, da vam bo naše delo všeč!"
+  },
+  "Prompt": {
+    "loadingUser": "Nalagam uporabnika",
+    "errLoadingModels" : "Napaka pri nalaganju modelov",
+    "errSendPrompt":  "Napaka pri pošiljanju vprašanja",
+    "placeholderPrompt": "npr. Katero leto se je Slovenija osamosvojila?"
+  },
+  "PromptButtons": {
+    "chooseModels": "Izberi modele",
+    "loadingModels": "Nalagam razpoložljive modele",
+    "zeroModels": "Ni razpoložljivih modelov",
+    "selectOne": "Izberi enega",
+    "selectAll": "Izberi vse",
+    "selected": "Izbrani"
+  },
+  "PromptResponses":{
+    "placeholderBeforeSend" : "Tukaj se bodo prikazali odgovori ...",
+    "summary": "Povzetek"
+  },
+  "Slot":{
+    "generatingAnswers": "Generiranje odgovorov",
+    "bet": "Stava",
+    "winnings": "Dobitek",
+    "totalWon": "Skupno",
+    "credit": "Kredit"
   }
 }

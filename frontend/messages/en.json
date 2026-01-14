@@ -2,7 +2,8 @@
   "HomePage": {
     "title": "AI Roundtable",
     "description": "Next.js application for AI Roundtable",
-    "description2": "Ask questions. Compare AI models. Get the best answer."
+    "description2": "Ask questions. Compare AI models. Get the best answer.",
+    "loading": "Loading"
   },
   "Localization": {
     "locale": "🇺🇸 EN",
@@ -70,35 +71,31 @@
     "returnHomeButton": "Return to Home Page",
     "contactSupport": "If you believe this is an error, please contact support."
   },
-  "SettingsPage_dataControl" : {
+  "SettingsPage_dataControl": {
     "dataControlSet": "DATA CONTROL SETTINGS",
-    "sharedLinks" : "Shared links",
+    "sharedLinks": "Shared links",
     "archivedChats": "Archived chats",
     "archiveAllChats": "Archive all chats",
     "deleateAllChats": "Delete all chats"
   },
-
-  "SettingPage_notificationSet" :{
+  "SettingPage_notificationSet": {
     "notificationSet": "NOTIFICATION SETTINGS",
-    "getNotifiedRes" : "Get notified when question resolved",
-    "getNotifiedGroup" : "Get notified when group active",
-    "getNotifiedTask" : "Get notified when task completed"
+    "getNotifiedRes": "Get notified when question resolved",
+    "getNotifiedGroup": "Get notified when group active",
+    "getNotifiedTask": "Get notified when task completed"
   },
-  
-  "SettingPage_security" : {
+ "SettingPage_security" : {
   "securitySet" : "SECURITY SETTINGS",
   "multyFactor" :"Multy factor authentification",
   "logOut" : "Log out of this device",
   "logOutAll" : "Log out of all devices"
   },
-    
   "SettingPage_options" : {
   "general" : "General",
   "notifications" :"Notifications",
   "security" : "Security",
   "close" : "Close"
   },
-
   "AboutUsPage" : {
     "about us" : "About us",
     "close" : "Close",
@@ -106,5 +103,30 @@
     "paragraph 2" : "Our goal is to develop high-quality software solutions while applying the concepts and methodologies learned in class. Through this project, we are gaining practical experience in software design, implementation, and teamwork.",
     "paragraph 3" : "For this project, we had the freedom to choose any topic, so we decided to develop an AI chat room, where you can interact with multiple AI models simultaneously and compare their responses.",
     "paragraph 4" : "We hope you enjoy exploring our work!"
+  },
+  "Prompt": {
+    "loadingUser": "Loading User",
+    "errLoadingModels" : "Error Loading Avaliable Models",
+    "errSendPrompt":  "Error Sending Question",
+    "placeholderPrompt": "e.g. In which year did the United States gain independence?"
+  },
+  "PromptButtons": {
+    "chooseModels": "Select Models",
+    "loadingModels": "Loading Avaliable Models",
+    "zeroModels": "No Avaliable Models",
+    "selectOne": "Select One",
+    "selectAll": "Select All",
+    "selected": "Selected"
+  },
+  "PromptResponses":{
+    "placeholderBeforeSend" : "Answers will appear here ...",
+    "summary": "Summary"
+  },
+  "Slot":{
+    "generatingAnswers": "Generating answers",
+    "bet": "Bet",
+    "winnings": "Winnings",
+    "totalWon": "Total Won",
+    "credit": "Credits"
   }
 }
