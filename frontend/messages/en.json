@@ -106,7 +106,13 @@
   },
   "PromptResponses":{
     "placeholderBeforeSend" : "Answers will appear here ...",
-    "summary": "Summary",
-    "generatingAnswers": "Generating answers ..."
+    "summary": "Summary"
+  },
+  "Slot":{
+    "generatingAnswers": "Generating answers",
+    "bet": "Bet",
+    "winnings": "Winnings",
+    "totalWon": "Total Won",
+    "credit": "Credits"
   }
 }

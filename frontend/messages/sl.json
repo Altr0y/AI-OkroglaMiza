@@ -106,7 +106,13 @@
   },
   "PromptResponses":{
     "placeholderBeforeSend" : "Tukaj se bodo prikazali odgovori ...",
-    "summary": "Povzetek",
-    "generatingAnswers": "Generiranje odgovorov ..."
+    "summary": "Povzetek"
+  },
+  "Slot":{
+    "generatingAnswers": "Generiranje odgovorov",
+    "bet": "Stava",
+    "winnings": "Dobitek",
+    "totalWon": "Skupno",
+    "credit": "Kredit"
   }
 }

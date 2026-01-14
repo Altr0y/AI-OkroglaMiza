@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
+import { Slot } from './slot';
 
 type PromptResponsesProps = {
   loading?: boolean;
@@ -26,6 +27,7 @@ export function PromptResponses({
   summary,
 }: PromptResponsesProps) {
   const t = useTranslations('PromptResponses');
+  const [showSlot, setShowSlot] = useState(true);
   // if (loading) {
   //   return <div className="text-sm text-zinc-500">Generiram odgovore…</div>;
   // }
@@ -58,8 +60,9 @@ export function PromptResponses({
     return items;
   }, [responses, summary]);
 
+  loading = true;
   if (loading) {
-    return <div className="text-sm text-zinc-500">{t('generatingAnswers')}</div>;
+    return <div className="text-sm text-zinc-500"><Slot open={loading}/></div>;
   }
 
   if (error) {
