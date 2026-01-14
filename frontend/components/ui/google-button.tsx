@@ -1,14 +1,36 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import { Button } from '@/components/ui/button';
+import { createClient } from '@/utils/supabase/client';
 
 export function GoogleButton() {
   const t = useTranslations('LoginForm');
+  
+  const supabase = createClient();
+
+  const handleGoogleLogin = async () => {
+    console.log("Prijava z Googlom se začenja...");
+
+    const { error } = await supabase.auth.signInWithOAuth({
+      provider: 'google',
+      options: {
+        redirectTo: `${window.location.origin}/auth/callback`,
+      },
+    });
+
+    if (error) {
+      console.error("Napaka pri prijavi:", error.message);
+      alert("Napaka pri prijavi: " + error.message);
+    }
+  };
 
   return (
     <Button
       type='button'
+      onClick={handleGoogleLogin}
       aria-label='Sign in with Google'
-      className='flex items-center gap-3 bg-primary rounded-md p-2 px-4 transition-colors duration-300 border  shadow-sm w-full justify-center h-11'
+      className='flex items-center gap-3 bg-primary rounded-md p-2 px-4 transition-colors duration-300 border shadow-sm w-full justify-center h-11'
     >
       <div className='flex items-center justify-center bg-white w-6 h-6 rounded-full'>
         <svg
@@ -17,7 +39,6 @@ export function GoogleButton() {
           className='w-4 h-4'
         >
           <title>{t('signInWithGoogle')}</title>
-          <desc>Google G Logo</desc>
           <path
             d='M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z'
             fill='#4285F4'
