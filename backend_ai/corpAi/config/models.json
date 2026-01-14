@@ -1,0 +1,23 @@
+
+{
+  "system_prompts": {
+    "default": "You are a helpful, precise, and concise AI assistant."
+  },
+  "providers": {
+    "openai": {
+      "model_id": "gpt-4o-mini",
+      "max_tokens": 512,
+      "temperature": 0.7
+    },
+    "anthropic": {
+      "model_id": "claude-3-haiku-20240307",
+      "max_tokens": 512,
+      "temperature": 0.7
+    },
+    "gemini": {
+      "model_id": "gemini-3-flash-preview",
+      "max_tokens": 512,
+      "temperature": 0.7
+    }
+  }
+}

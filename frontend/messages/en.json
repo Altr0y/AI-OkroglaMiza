@@ -84,11 +84,25 @@
     "getNotifiedGroup": "Get notified when group active",
     "getNotifiedTask": "Get notified when task completed"
   },
-  "SettingPage_security": {
-    "securitySet": "SECURITY SETTINGS",
-    "multyFactor": "Multy factor authentification",
-    "logOut": "Log out of this device",
-    "logOutAll": "Log out of all devices"
+ "SettingPage_security" : {
+  "securitySet" : "SECURITY SETTINGS",
+  "multyFactor" :"Multy factor authentification",
+  "logOut" : "Log out of this device",
+  "logOutAll" : "Log out of all devices"
+  },
+  "SettingPage_options" : {
+  "general" : "General",
+  "notifications" :"Notifications",
+  "security" : "Security",
+  "close" : "Close"
+  },
+  "AboutUsPage" : {
+    "about us" : "About us",
+    "close" : "Close",
+    "paragraph 1" : "We are a student team from FERI, University of Maribor. This project was assigned to us by Professor Bojan Žlahtič as part of the course RPO - Razvoj programske opreme.",
+    "paragraph 2" : "Our goal is to develop high-quality software solutions while applying the concepts and methodologies learned in class. Through this project, we are gaining practical experience in software design, implementation, and teamwork.",
+    "paragraph 3" : "For this project, we had the freedom to choose any topic, so we decided to develop an AI chat room, where you can interact with multiple AI models simultaneously and compare their responses.",
+    "paragraph 4" : "We hope you enjoy exploring our work!"
   },
   "Prompt": {
     "loadingUser": "Loading User",
