@@ -2,7 +2,8 @@
   "HomePage": {
     "title": "AI Okrogla Miza",
     "description": "Next.js aplikacija za AI Okroglo Mizo",
-    "description2": "Postavljajte vprašanja. Primerjajte AI modele. Pridobite najboljši odgovor."
+    "description2": "Postavljajte vprašanja. Primerjajte AI modele. Pridobite najboljši odgovor.",
+    "loading": "Nalagam"
   },
   "Localization": {
     "locale": "🇸🇮 SL",
@@ -70,26 +71,26 @@
     "returnHomeButton": "Nazaj na domačo stran",
     "contactSupport": "Če menite, da gre za napako, se obrnite na podporo."
   },
-
-  "SettingsPage_dataControl" : {
+  "SettingsPage_dataControl": {
     "dataControlSet": "NASTAVITVE NADZORA PODATKOV",
-    "sharedLinks" : "Deljene povezave",
+    "sharedLinks": "Deljene povezave",
     "archivedChats": "Arhivirani pogovori",
     "archiveAllChats": "Arhiviraj vse pogovore",
     "deleateAllChats": "Izbriši vse pogovore"
-},
-
-"SettingPage_notificationSet" :{
+  },
+  "SettingPage_notificationSet": {
     "notificationSet": "NASTAVITVE NOTIFIKACIJ",
-    "getNotifiedRes" : "Obveščaj, ko je vprašanje rešeno",
-    "getNotifiedGroup" : "Obveščaj, ko je skupina aktivna",
-    "getNotifiedTask" : "Obveščaj, ko je naloga zaključena"
-},
-
-"SettingPage_security" : {
-    "securitySet" : "SECURITY SETTINGS",
-    "multyFactor" : "Večfaktorska avtentikacija",
-    "logOut" : "Odjava iz te naprave",
-    "logOutAll" : "Odjava iz vseh naprav"
-}
+    "getNotifiedRes": "Obveščaj, ko je vprašanje rešeno",
+    "getNotifiedGroup": "Obveščaj, ko je skupina aktivna",
+    "getNotifiedTask": "Obveščaj, ko je naloga zaključena"
+  },
+  "SettingPage_security": {
+    "securitySet": "SECURITY SETTINGS",
+    "multyFactor": "Večfaktorska avtentikacija",
+    "logOut": "Odjava iz te naprave",
+    "logOutAll": "Odjava iz vseh naprav"
+  },
+  "Prompt": {
+    "loadingUser": "Nalagam uporabnika"
+  }
 }

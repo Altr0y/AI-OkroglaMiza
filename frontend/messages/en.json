@@ -2,7 +2,8 @@
   "HomePage": {
     "title": "AI Roundtable",
     "description": "Next.js application for AI Roundtable",
-    "description2": "Ask questions. Compare AI models. Get the best answer."
+    "description2": "Ask questions. Compare AI models. Get the best answer.",
+    "loading": "Loading"
   },
   "Localization": {
     "locale": "🇺🇸 EN",
@@ -90,6 +91,8 @@
   "multyFactor" :"Multy factor authentification",
   "logOut" : "Log out of this device",
   "logOutAll" : "Log out of all devices"
+  },
+  "Prompt": {
+    "loadingUser": "Loading User"
   }
-
 }
