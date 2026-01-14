@@ -1,9 +1,30 @@
+import Image from 'next/image';
 import { SignupForm } from '@/components/signup-form';
 
 export default function Page() {
   return (
-    <div className='flex flex-1 items-center justify-center bg-zinc-50 dark:bg-black p-4'>
-      <SignupForm className='w-full max-w-sm' />
+    <div className="relative flex flex-1 items-center justify-center bg-zinc-50 dark:bg-black p-4 overflow-hidden">
+      
+      {/* Background Image - Light */}
+      <Image
+        src="/background-accent-light.svg"
+        alt="Background"
+        fill
+        priority
+        className="object-cover z-0 dark:hidden pointer-events-none"
+      />
+
+      {/* Background Image - Dark */}
+      <Image
+        src="/background-accent-dark.svg"
+        alt="Background"
+        fill
+        priority
+        className="object-cover z-0 hidden dark:block pointer-events-none"
+      />
+
+      {/* Signup Form */}
+      <SignupForm className="relative z-10 w-full max-w-sm" />
     </div>
   );
 }
