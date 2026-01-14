@@ -60,9 +60,9 @@ services:
     # For CPU-only:
     #   - Comment out devices section below
     #   - Comment out whole deploy section
-    devices:
-      - /dev/kfd
-      - /dev/dri
+    #devices:
+    #  - /dev/kfd
+    #  - /dev/dri
 
     #deploy:
     #  resources:
@@ -91,6 +91,22 @@ services:
       - OLLAMA_HOST=http://ollama:11434
                 
 
+  backend_billing:
+    build:
+      context: ./backend_billing
+      dockerfile: Dockerfile
+    develop:
+      watch:
+        - path: ./backend_billing
+          action: rebuild
+    ports:
+      - "5001:5001"
+    env_file:
+      - .env
+    environment:
+      - PORT=5001
+    restart: unless-stopped
+
   frontend:
     build:
       context: ./frontend
@@ -107,7 +123,9 @@ services:
     environment:
       - NEXT_PUBLIC_API_URL=http://localhost:8000
       - NEXT_PUBLIC_AUTH_URL=http://localhost:5000
+      - NEXT_PUBLIC_BILLING_URL=http://localhost:5001
     depends_on:
       - ai_backend
       - backend_auth
+      - backend_billing
     restart: unless-stopped
