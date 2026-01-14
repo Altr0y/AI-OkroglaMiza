@@ -4,7 +4,7 @@ import os
 import json
 from pathlib import Path
 from dotenv import load_dotenv
-from google import genai
+from anthropic import Anthropic
 
 
 # 1. Load .env RELIABLY
@@ -16,9 +16,9 @@ if not ENV_PATH.exists():
 
 load_dotenv(ENV_PATH)
 
-API_KEY = os.getenv("GEMINI_API_KEY")
+API_KEY = os.getenv("ANTHROPIC_API_KEY")
 if not API_KEY:
-    raise RuntimeError("GEMINI_API_KEY is not set or not loaded")
+    raise RuntimeError("ANTHROPIC_API_KEY is not set or not loaded")
 
 
 # 2. Load models.json
@@ -30,30 +30,35 @@ if not CONFIG_PATH.exists():
 with open(CONFIG_PATH, "r", encoding="utf-8") as f:
     config = json.load(f)
 
-gemini_cfg = config["providers"]["gemini"]
+anthropic_cfg = config["providers"]["anthropic"]
 SYSTEM_PROMPT = config["system_prompts"]["default"]
 
 
-# 3. Gemini Client
-client = genai.Client(api_key=API_KEY)
+# 3. Anthropic Client
+client = Anthropic(api_key=API_KEY)
 
 
 # 4. Chat function
 def chat(user_input: str) -> str:
-    response = client.models.generate_content(
-        model=gemini_cfg["model_id"],
-        contents=[
-            SYSTEM_PROMPT,
-            user_input
+    response = client.messages.create(
+        model=anthropic_cfg["model_id"],
+        max_tokens=anthropic_cfg["max_tokens"],
+        temperature=anthropic_cfg["temperature"],
+        system=SYSTEM_PROMPT,
+        messages=[
+            {
+                "role": "user",
+                "content": user_input
+            }
         ]
     )
 
-    return response.text.strip()
+    return response.content[0].text.strip()
 
 
 # 5. CLI entry point
 if __name__ == "__main__":
-    print("Gemini backend ready. Type 'exit' to quit.\n")
+    print("Anthropic backend ready. Type 'exit' to quit.\n")
 
     while True:
         user_input = input("> ")
